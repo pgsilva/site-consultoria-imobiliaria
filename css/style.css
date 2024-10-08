@@ -93,6 +93,7 @@
     font-weight: 500;
     outline: none;
     transition: .5s;
+    cursor: pointer;
 }
 
 .sticky-top.navbar-dark .navbar-nav .nav-link {
