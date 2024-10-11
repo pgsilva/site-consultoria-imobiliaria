@@ -164,6 +164,18 @@
     animation: imgRotate 50s linear infinite;
 }
 
+/*** Blog Header ***/
+.blog-header {
+    background: linear-gradient(rgba(15, 23, 43, .9), rgba(15, 23, 43, .9)), url(../img/menu-3.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.blog-header img {
+    animation: imgRotate 50s linear infinite;
+}
+
 @keyframes imgRotate { 
     100% { 
         transform: rotate(360deg); 
