@@ -33,6 +33,19 @@
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <style>
+            .btn-whatsapp {
+                background-color: #0CC042;
+                border-color: #0CC042;
+            }
+
+            .btn-whatsapp:hover {
+                background-color: #09963B;
+                border-color: #09963B;
+            }
+        </style>
     </head>
 
     <body>
@@ -51,7 +64,7 @@
             <section id="navbar">
                 <div class="container-xxl position-relative p-0">
                     <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0" id="header">
-                        <a href="" class="navbar-brand p-0">
+                        <a href="index.html" class="navbar-brand p-0">
                             <img src="img/logo.jpg" alt="Logo">
                         </a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -79,7 +92,7 @@
                                     <p class="text-white animated slideInLeft mb-4 pb-2">
                                         Serviços imobiliários completos para atender suas necessidades com eficiência e segurança.
                                     </p>
-                                    <a onclick="scrollToSection('servicos')" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft title-font">
+                                    <a onclick="scrollToSection('contato')" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft title-font">
                                         Simule com a gente
                                     </a>
                                 </div>
@@ -211,10 +224,10 @@
                                 <h5 class="section-title ff-secondary text-start text-primary fw-normal">Sobre nós</h5>
                                 <h1 class="mb-4">Seja bem-vindo à Premium Assessoria</h1>
                                 <p class="mb-4">
-                                    Nosso objetivo é tornar o processo de compra e
-                                    venda de imóveis mais simples e eficiente para você. Com uma equipe de especialistas
-                                    dedicados, oferecemos suporte completo na avaliação de propriedades, negociação de
-                                    condições e conformidade legal da documentação do Imóvel. 
+                                    Nosso objetivo é tornar o processo de compra e venda de imóveis mais simples e 
+                                    eficiente para você. Com uma equipe de especialistas dedicados, oferecemos 
+                                    suporte completo na avaliação de propriedades, negociação de condições e 
+                                    conformidade legal da documentação do Imóvel. 
                                 </p>
                                 <p class="mb-4">
                                     Estamos aqui para guiá-lo em cada etapa, garantindo decisões informadas e
@@ -418,7 +431,11 @@
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <button class="btn btn-primary w-100 py-3" style="background-color: #0CC042; border-color: #0CC042;" type="submit" onclick="sendMessage()"">
+                                                <button 
+                                                    class="btn btn-primary w-100 py-3 btn-whatsapp"
+                                                    type="submit" 
+                                                    onclick="sendMessage()"
+                                                >
                                                     Enviar mensagem
                                                 </button>
                                             </div>
@@ -450,12 +467,9 @@
                             <!-- <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Rua 123, Santo André - SP</p> -->
                             <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>(11) 95472-7371</p>
                             <p class="mb-2"><i class="fa fa-envelope me-3"></i>atendimento@assessoriapremium.com.br</p>
-                            <div class="d-flex pt-2">
-                                <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/assessoriapremium.imob" target="_blank"><i class="fab fa-instagram"></i></a>
-                                <!-- <a class="btn btn-outline-light btn-social" href="https://facebook.com/perfil"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-light btn-social" href="https://youtube.com/perfil"><i class="fab fa-youtube"></i></a>
-                                <a class="btn btn-outline-light btn-social" href="https://linkedin.com/in/perfil"><i class="fab fa-linkedin-in"></i></a> -->
-                            </div>
+                            <p class="mb-2" href="https://www.instagram.com/assessoriapremium.imob" target="_blank">
+                                <i class="fab fa-instagram me-3"></i>Instagram Premium Assessoria
+                            </p>
                         </div>
                         <div class="col-lg-4 col-md-6">
                             <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Funcionamento</h4>
