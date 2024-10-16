@@ -220,9 +220,25 @@
     display: none;
 }
 
+.justify-text {
+    text-align: justify;
+}
+
+/*** Contact ***/
+.btn-whatsapp {
+    background-color: #0CC042;
+    border-color: #0CC042;
+}
+
+.btn-whatsapp:hover {
+    background-color: #09963B;
+    border-color: #09963B;
+}
+
 
 /*** Service ***/
 .service-item {
+    height: 100%;
     box-shadow: 0 0 45px rgba(0, 0, 0, .08);
     transition: .5s;
 }
@@ -250,8 +266,8 @@
 .video {
     position: relative;
     height: 100%;
-    min-height: 500px;
-    background: linear-gradient(rgba(15, 23, 43, .1), rgba(15, 23, 43, .1)), url(../img/video.jpg);
+    min-height: 250px;
+    background: linear-gradient(rgba(15, 23, 43, .1), rgba(15, 23, 43, .1)), url(../img/contact-2.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
