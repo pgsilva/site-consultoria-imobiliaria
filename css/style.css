@@ -133,6 +133,11 @@
     .navbar-dark .navbar-brand img {
         max-height: 45px;
     }
+
+    .simulate-description {
+        padding: 0px !important;
+        text-align: justify;
+    }
 }
 
 @media (min-width: 992px) {
@@ -526,4 +531,100 @@ body {
 .title-font {
     font-family: 'Playfair Display', serif !important;
     font-weight: 800 !important;
+}
+
+.button-whatsapp {
+    background-color: #0CC042; 
+    color: white; 
+    border-radius: 50px; 
+    padding-top: 15px; 
+    padding-bottom: 15px; 
+    padding-left: 30px; 
+    padding-right: 30px; 
+    font-weight: bold;
+}
+
+.button-whatsapp:hover {
+    background-color: #09963B;
+    color: white;
+}
+
+.card-whatsapp {
+    flex-direction: column;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background-color: #0CC042;
+    color: white;
+    padding: 20px; 
+    margin: 20px; 
+    height: 200px; 
+    width: 200px; 
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.card-whatsapp:hover {
+    background-color: #09963B;
+}
+
+.button-simulacao {
+    background-color: #b48865; 
+    color: white; 
+    border-radius: 50px; 
+    padding-top: 15px; 
+    padding-bottom: 15px; 
+    padding-left: 30px; 
+    padding-right: 30px; 
+    font-weight: bold;
+}
+ 
+.button-simulacao:hover {
+    background-color: #8c664b;
+    color: white;
+}
+
+.card-instagram {
+    flex-direction: column;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background-color: #B72E79; 
+    color: white;
+    padding: 20px; 
+    margin: 20px; 
+    height: 200px; 
+    width: 200px; 
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.card-instagram:hover {
+    background-color: #9A2466;
+}
+
+.card-contact {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background-color: #B48865; 
+    color: white;
+    padding: 20px; 
+    margin: 20px; 
+    height: 200px; 
+    width: 200px; 
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.card-contact:hover {
+    background-color: white;
+    color: #B48865;
+    border: 2px solid #B48865
+}
+
+.simulate-description {
+    padding-left: 20px; 
+    padding-right: 20px; 
+    padding-bottom: 20px;
 }
