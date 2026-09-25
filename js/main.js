@@ -63,6 +63,9 @@
         }
     });
     $('.back-to-top').click(function () {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            return true;
+        }
         $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
         return false;
     });

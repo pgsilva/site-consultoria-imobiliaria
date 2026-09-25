@@ -1,4 +1,8 @@
 /********** Template CSS **********/
+html {
+    scroll-behavior: smooth;
+}
+
 :root {
     --primary: #B48865;
     --light: #F1F8FF;
@@ -154,6 +158,27 @@
         position: fixed;
         background: var(--dark) !important;
     }
+
+    #servicos,
+    #sobre,
+    #depoimentos,
+    #contato {
+        scroll-margin-top: 96px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
 
 
@@ -196,6 +221,14 @@
 .section-title {
     position: relative;
     display: inline-block;
+}
+
+.section-title.text-primary {
+    color: #805C41 !important;
+}
+
+.footer .section-title.text-primary {
+    color: #D7AA82 !important;
 }
 
 .section-title::before {
@@ -601,6 +634,28 @@ body {
 
 .card-instagram:hover {
     background-color: #9A2466;
+}
+
+.contact-social-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+
+.contact-social-links > a {
+    flex: 1 1 140px;
+    max-width: 200px;
+}
+
+.contact-social-links .card-whatsapp,
+.contact-social-links .card-instagram {
+    width: 100%;
+    margin: 0;
+}
+
+.contact-email {
+    overflow-wrap: anywhere;
 }
 
 .card-contact {

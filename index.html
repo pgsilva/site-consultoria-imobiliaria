@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
     <head>
         <meta charset="utf-8">
         <title>Premium Assessoria Imobiliária</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="" name="keywords">
-        <meta content="" name="description">
+        <meta content="Assessoria imobiliária completa para financiamento, documentação e compra segura de imóveis." name="description">
 
         <!-- Favicon -->
         <link href="img/logo-minimalista.jpg" rel="icon">
@@ -26,7 +25,6 @@
         <!-- Libraries Stylesheet -->
         <link href="lib/animate/animate.min.css" rel="stylesheet">
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
         <!-- Customized Bootstrap Stylesheet -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -52,18 +50,18 @@
                 <div class="container-xxl position-relative p-0">
                     <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0" id="header">
                         <a href="index.html" class="navbar-brand p-0">
-                            <img src="img/logo-minimalista.jpg" alt="Logo">
+                            <img src="img/logo-minimalista.jpg" alt="Premium Assessoria Imobiliária">
                         </a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                            <span class="fa fa-bars"></span>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Abrir menu de navegação">
+                            <span class="fa fa-bars" aria-hidden="true"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarCollapse">
                             <div class="navbar-nav ms-auto py-0 pe-4">
-                                <a onclick="scrollToSection('navbar')" class="nav-item nav-link active">Home</a>
-                                <a onclick="scrollToSection('servicos')" class="nav-item nav-link">Serviços</a>
-                                <a onclick="scrollToSection('sobre')" class="nav-item nav-link">Sobre Nós</a>
-                                <a onclick="scrollToSection('depoimentos')" class="nav-item nav-link">Depoimentos</a>
-                                <a onclick="scrollToSection('contato')" class="nav-item nav-link">Contato</a>
+                                <a href="#navbar" class="nav-item nav-link active" aria-current="page">Home</a>
+                                <a href="#servicos" class="nav-item nav-link">Serviços</a>
+                                <a href="#sobre" class="nav-item nav-link">Sobre Nós</a>
+                                <a href="#depoimentos" class="nav-item nav-link">Depoimentos</a>
+                                <a href="#contato" class="nav-item nav-link">Contato</a>
                                 <a href="blog.html" class="nav-item nav-link">Blog</a>
                             </div>
                         </div>
@@ -74,7 +72,7 @@
                             <div class="row align-items-center g-5">
                                 <div class="col-lg-6 text-center text-lg-start">
                                     <h1 class="display-3 text-gold animated slideInLeft title-font">Premium<br>
-                                        <p class="display-6 text-gold">Assessoria Imobiliária</p>
+                                        <span class="display-6 text-gold">Assessoria Imobiliária</span>
                                     </h1>
                                     <p class="text-white animated slideInLeft mb-4 pb-2">
                                         Serviços imobiliários completos para atender suas necessidades com eficiência e segurança.
@@ -93,17 +91,18 @@
             </section>
             <!-- Navbar & Hero End -->
 
-
+            <main>
             <!-- Service Start -->
             <section id="servicos" class="works">
+                <h2 class="visually-hidden">Serviços</h2>
                 <div class="container-xxl py-5">
                     <div class="container" style="margin-top: 12px; margin-bottom: 12px;">
-                        <div class="row g-6">
+                        <div class="row g-4">
                             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="service-item rounded pt-3">
                                     <div class="p-4">
                                         <i class="fa fa-3x fa-user-tie text-primary mb-4"></i>
-                                        <h5 class="title-font">Simulação</h5>
+                                        <h3 class="h5 title-font">Simulação</h3>
                                         <p>Fluxo de parcelas em todos os bancos</p>
                                     </div>
                                 </div>
@@ -112,7 +111,7 @@
                                 <div class="service-item rounded pt-3">
                                     <div class="p-4">
                                         <i class="fa fa-3x fa-credit-card text-primary mb-4"></i>
-                                        <h5 class="title-font">Crédito</h5>
+                                        <h3 class="h5 title-font">Crédito</h3>
                                         <p>Aprovação do financiamento e análise financeira</p>
                                     </div>
                                 </div>
@@ -121,7 +120,7 @@
                                 <div class="service-item rounded pt-3">
                                     <div class="p-4">
                                         <i class="fa fa-3x fa-cart-plus text-primary mb-4"></i>
-                                        <h5 class="title-font">Cotação</h5>
+                                        <h3 class="h5 title-font">Cotação</h3>
                                         <p>Negociação da taxa efetiva do seu contrato</p>
                                     </div>
                                 </div>
@@ -130,7 +129,7 @@
                                 <div class="service-item rounded pt-3">
                                     <div class="p-4">
                                         <i class="fa fa-3x fa-file text-primary mb-4"></i>
-                                        <h5 class="title-font">Documentação</h5>
+                                        <h3 class="h5 title-font">Documentação</h3>
                                         <p>Emissão de CND, ITBI e trâmites legais</p>
                                     </div>
                                 </div>
@@ -138,12 +137,12 @@
                         </div>
                     </div>
                     <div class="container" style="margin-top: 12px; margin-bottom: 12px;">
-                        <div class="row g-6">
+                        <div class="row g-4">
                             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
                                 <div class="service-item rounded pt-3">
                                     <div class="p-4">
                                         <i class="fa fa-3x fa-landmark text-primary mb-4"></i>
-                                        <h5 class="title-font">ITBI</h5>
+                                        <h3 class="h5 title-font">ITBI</h3>
                                         <p>Emissão do imposto na prefeitura</p>
                                     </div>
                                 </div>
@@ -152,7 +151,7 @@
                                 <div class="service-item rounded pt-3">
                                     <div class="p-4">
                                         <i class="fa fa-3x fa-pen text-primary mb-4"></i>
-                                        <h5 class="title-font">Registro</h5>
+                                        <h3 class="h5 title-font">Registro</h3>
                                         <p>Acompanhamento da alienação da matrícula</p>
                                     </div>
                                 </div>
@@ -161,7 +160,7 @@
                                 <div class="service-item rounded pt-3">
                                     <div class="p-4">
                                         <i class="fa fa-3x fa-home text-primary mb-4"></i>
-                                        <h5 class="title-font">Portador</h5>
+                                        <h3 class="h5 title-font">Portador</h3>
                                         <p>Serviços de courier emergencial</p>
                                     </div>
                                 </div>
@@ -170,7 +169,7 @@
                                 <div class="service-item rounded pt-3">
                                     <div class="p-4">
                                         <i class="fa fa-3x fa-headset text-primary mb-4"></i>
-                                        <h5 class="title-font">Suporte</h5>
+                                        <h3 class="h5 title-font">Suporte</h3>
                                         <p>Auxílio até a entrega das chaves</p>
                                     </div>
                                 </div>
@@ -191,25 +190,25 @@
                                 <div class="row g-3">
                                     <div class="col-6 text-start">
                                         <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s"
-                                            src="img/about-1.jpg">
+                                            src="img/about-1.jpg" alt="" loading="lazy" decoding="async">
                                     </div>
                                     <div class="col-6 text-start">
                                         <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.3s"
-                                            src="img/about-2.jpg" style="margin-top: 25%;">
+                                            src="img/about-2.jpg" alt="" loading="lazy" decoding="async" style="margin-top: 25%;">
                                     </div>
                                     <div class="col-6 text-end">
                                         <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.5s"
-                                            src="img/about-3.jpg">
+                                            src="img/about-3.jpg" alt="" loading="lazy" decoding="async">
                                     </div>
                                     <div class="col-6 text-end">
                                         <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s"
-                                            src="img/about-4.jpg">
+                                            src="img/about-4.jpg" alt="" loading="lazy" decoding="async">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <h5 class="section-title ff-secondary text-start text-primary fw-normal">Sobre nós</h5>
-                                <h1 class="mb-4">Seja bem-vindo à Premium Assessoria</h1>
+                                <p class="section-title ff-secondary text-start text-primary fw-normal mb-2">Sobre nós</p>
+                                <h2 class="mb-4">Seja bem-vindo à Premium Assessoria</h2>
                                 <p class="mb-4 justify-text">
                                     Nosso objetivo é tornar o processo de compra e venda de imóveis mais simples e 
                                     eficiente para você. Com uma equipe de especialistas dedicados, oferecemos 
@@ -224,20 +223,19 @@
                                 <div class="row g-4 mb-4">
                                     <div class="col-sm-6">
                                         <div class="d-flex align-items-center border-start border-5 border-primary px-3">
-                                            <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">2</h1>
+                                            <span class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">2</span>
                                             <div class="ps-4">
                                                 <p class="mb-0">Anos de</p>
-                                                <h6 class="text-uppercase mb-0">Experiência</h6>
+                                                <p class="h6 text-uppercase mb-0">Experiência</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="d-flex align-items-center border-start border-5 border-primary px-3">
-                                            <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">50
-                                            </h1>
+                                            <span class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">50</span>
                                             <div class="ps-4">
                                                 <p class="mb-0">Mais de</p>
-                                                <h6 class="text-uppercase mb-0">clientes</h6>
+                                                <p class="h6 text-uppercase mb-0">clientes</p>
                                             </div>
                                         </div>
                                     </div>
@@ -253,7 +251,7 @@
                         <div class="row g-4 justify-content-center">
                             <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="rounded ">
-                                    <h5 class="mb-0">Missão</h5>
+                                    <h3 class="h5 mb-0">Missão</h3>
                                     <p class="justify-text">
                                         Nossa missão é oferecer serviços de assessoria em documentação imobiliária com precisão
                                         e eficiência, garantindo a conformidade legal e a segurança nas transações de imóveis.
@@ -268,7 +266,7 @@
                                     <!-- <div class="rounded-circle overflow-hidden m-4">
                                         <img class="img-fluid" src="img/team-2.jpg" alt="">
                                     </div> -->
-                                    <h5 class="mb-0">Visão</h5>
+                                    <h3 class="h5 mb-0">Visão</h3>
                                     <p class="justify-text">
                                         Nossa visão é ser a principal referência em assessoria de documentação imobiliária,
                                         reconhecida pela excelência e confiabilidade dos nossos serviços. Buscamos inovar
@@ -297,14 +295,14 @@
                 <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="container">
                         <div class="text-center">
-                            <h5 class="section-title ff-secondary text-center text-primary fw-normal">Depoimentos</h5>
-                            <h1 class="mb-5">O que nossos clientes dizem</h1>
+                            <p class="section-title ff-secondary text-center text-primary fw-normal mb-2">Depoimentos</p>
+                            <h2 class="mb-5">O que nossos clientes dizem</h2>
                         </div>
                         <div class="owl-carousel testimonial-carousel">
                             <div class="testimonial-item bg-transparent border rounded p-4">
                                 <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
                                 <p>Sempre comprometidos do início ao final, com muita dedicação e profissionalismo. Todo o trâmite da prefeitura foi resolvido sem eu ter que me envolver</p>
-                                <h5 class="mb-1">Gabriela Oliveira</h5>
+                                <h3 class="h5 mb-1">Gabriela Oliveira</h3>
                                 <!-- <div class="d-flex align-items-center">
                                     <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-1.jpg"
                                         style="width: 50px; height: 50px;">
@@ -317,7 +315,7 @@
                             <div class="testimonial-item bg-transparent border rounded p-4">
                                 <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
                                 <p>Estou muito satisfeito com o atendimento e a qualidade do serviço. A equipe sempre se mostrou disposta a ajudar e superou todas as minhas expectativas, mesmo com o atraso na esteira do banco</p>
-                                <h5 class="mb-1">Paulo Guilherme</h5>
+                                <h3 class="h5 mb-1">Paulo Guilherme</h3>
                                 <!-- <div class="d-flex align-items-center">
                                     <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-2.jpg"
                                         style="width: 50px; height: 50px;">
@@ -330,7 +328,7 @@
                             <div class="testimonial-item bg-transparent border rounded p-4">
                                 <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
                                 <p>A simulação foi feita em os todos os bancos e consegui escolher a menor taxa. Minha matrícula atrasou porém consegui pegar as chaves sem multas pois a assessoria me ajudou a negociar com a construtora</p>
-                                <h5 class="mb-1">Bruno Rodrigues</h5>
+                                <h3 class="h5 mb-1">Bruno Rodrigues</h3>
                                 <!-- <div class="d-flex align-items-center">
                                     <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-3.jpg"
                                         style="width: 50px; height: 50px;">
@@ -353,27 +351,27 @@
                     <div class="container">
 
                         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                            <h5 class="section-title ff-secondary text-center text-primary fw-normal">Contato</h5>
-                            <h1>Entre em contato conosco</h1>
+                            <p class="section-title ff-secondary text-center text-primary fw-normal mb-2">Contato</p>
+                            <h2>Entre em contato conosco</h2>
 
-                            <div style="display: flex; justify-content: center;">
-                                <a href="https://wa.link/voqw9a" target="_blank">
+                            <div class="contact-social-links">
+                                <a href="https://wa.link/voqw9a" target="_blank" rel="noopener noreferrer">
                                     <div class="card-whatsapp">
-                                        <i class="fa-3x fab fa-whatsapp"></i>
+                                        <i class="fa-3x fab fa-whatsapp" aria-hidden="true"></i>
                                         <p>Whatsapp</p>
                                     </div>
                                 </a>
 
-                                <a href="https://www.instagram.com/assessoriapremium.imob" target="_blank">
+                                <a href="https://www.instagram.com/assessoriapremium.imob" target="_blank" rel="noopener noreferrer">
                                     <div class="card-instagram">
-                                        <i class="fa-3x fab fa-instagram"></i>
+                                        <i class="fa-3x fab fa-instagram" aria-hidden="true"></i>
                                         <p>Instagram</p>
                                     </div>
                                 </a>
                             </div>
 
                             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                                <h1 class="mb-2" style="margin-top: 48px;">Faça uma simulação financeira</h1>
+                                <h3 class="mt-5 mb-2">Faça uma simulação financeira</h3>
                                 <p class="simulate-description">Ao clicar no botão abaixo, você será redirecionado para um formulário onde você deverá preencher suas informações para que nós possamos realizar uma simulação de financiamento imobiliário em todos os principais bancos do país.</p>
                             </div>
                             <div class="row g-4">
@@ -382,6 +380,7 @@
                                         class="button-simulacao"
                                         href="https://simular.credihome.com.br/premiumassessoria" 
                                         target="_blank" 
+                                        rel="noopener noreferrer"
                                     >
                                         Simular agora
                                     </a>
@@ -392,28 +391,27 @@
                 </div>
             </section>
             <!-- Contact End -->
+            </main>
 
 
             <!-- Footer Start -->
-            <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+            <footer class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
                 <div class="container py-5">
                     <div class="row g-5">
                         <div class="col-lg-4 col-md-6">
                             <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Empresa</h4>
-                            <a class="btn btn-link" onclick="scrollToSection('sobre')">Sobre nós</a>
-                            <a class="btn btn-link" onclick="scrollToSection('contato')">Contato</a>
+                            <a class="btn btn-link" href="#sobre">Sobre nós</a>
+                            <a class="btn btn-link" href="#contato">Contato</a>
                             <a class="btn btn-link" href="blog.html">Blog</a>
-                            <a class="btn btn-link" href="">Política de privacidade</a>
-                            <a class="btn btn-link" href="">Termos e condições</a>
                         </div>
                         <div class="col-lg-4 col-md-6">
                             <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contato</h4>
                             <!-- <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Rua 123, Santo André - SP</p> -->
-                            <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>(11) 95472-7371</p>
-                            <p class="mb-2"><i class="fa fa-envelope me-3"></i>atendimento@assessoriapremium.com.br</p>
+                            <p class="mb-2"><i class="fa fa-phone-alt me-3" aria-hidden="true"></i><a class="text-light text-decoration-none" href="tel:+5511954727371">(11) 95472-7371</a></p>
+                            <p class="mb-2"><i class="fa fa-envelope me-3" aria-hidden="true"></i><a class="contact-email text-light text-decoration-none" href="mailto:atendimento@assessoriapremium.com.br">atendimento@assessoriapremium.com.br</a></p>
                             <p class="mb-2">
-                                <a style="color: white" href="https://www.instagram.com/assessoriapremium.imob" target="_blank">
-                                    <i class="fab fa-instagram me-3"></i>
+                                <a class="text-light" href="https://www.instagram.com/assessoriapremium.imob" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-instagram me-3" aria-hidden="true"></i>
                                     Instagram Premium Assessoria
                                 </a>
                             </p>
@@ -429,11 +427,11 @@
                     <div class="copyright">
                         <div class="row">
                             <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                                Made with ❤️ by <a href="https://github.com/pgsilva" target="_blank">mrmorales</a> and 
-                                <a href="https://github.com/LPHolanda" target="_blank">LPHolanda</a>.
+                                Made with ❤️ by <a href="https://github.com/pgsilva" target="_blank" rel="noopener noreferrer">mrmorales</a> and
+                                <a href="https://github.com/LPHolanda" target="_blank" rel="noopener noreferrer">LPHolanda</a>.
                                 <hr>
 
-                                &copy; <a class="border-bottom" href="#">Premium Assessoria</a>, All Right Reserved.
+                                &copy; <a class="border-bottom" href="index.html">Premium Assessoria</a>, All Right Reserved.
 
                                 <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
                                 Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
@@ -451,12 +449,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </footer>
             <!-- Footer End -->
 
 
             <!-- Back to Top -->
-            <a onclick="scrollToSection('navbar')" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+            <a href="#navbar" class="btn btn-lg btn-primary btn-lg-square back-to-top" aria-label="Voltar ao topo"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
         </div>
 
         <!-- JavaScript Libraries -->
@@ -467,13 +465,9 @@
         <script src="lib/waypoints/waypoints.min.js"></script>
         <script src="lib/counterup/counterup.min.js"></script>
         <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/tempusdominus/js/moment.min.js"></script>
-        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
-        <script src="js/contact.js"></script>
         <script src="js/scrollToSection.js"></script>
     </body>
 </html>
