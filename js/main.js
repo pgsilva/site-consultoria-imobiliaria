@@ -122,5 +122,26 @@
             }
         }
     });
+
+    // Partner banks carousel
+    $(".partner-bank-carousel").owlCarousel({
+        autoplay: true,
+        autoplayTimeout: 3500,
+        autoplayHoverPause: true,
+        smartSpeed: 450,
+        margin: 12,
+        dots: false,
+        loop: true,
+        nav: true,
+        navText: [
+            '<i class="bi bi-arrow-left" aria-hidden="true"></i><span class="visually-hidden">Bancos anteriores</span>',
+            '<i class="bi bi-arrow-right" aria-hidden="true"></i><span class="visually-hidden">Próximos bancos</span>'
+        ],
+        responsive: {
+            0: { items: 2 },
+            576: { items: 3 },
+            992: { items: 6 }
+        }
+    });
     
 })(jQuery);

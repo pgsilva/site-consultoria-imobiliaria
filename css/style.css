@@ -815,6 +815,128 @@ html {
     font-size: 1.65rem;
 }
 
+.partner-banks {
+    margin-top: 1.75rem;
+    padding: 1.15rem 1.25rem;
+    background: rgba(255, 255, 255, .055);
+    border: 1px solid rgba(232, 185, 74, .25);
+    border-radius: 16px;
+}
+
+.partner-banks-heading {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    margin-bottom: .9rem;
+}
+
+.partner-banks-heading h3 {
+    margin-bottom: 0;
+    font-size: 1.05rem;
+}
+
+.partner-banks-heading p {
+    margin: 0;
+    color: rgba(255, 255, 255, .72);
+    font-size: .82rem;
+    line-height: 1.45;
+}
+
+.partner-banks-icon {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: #61aafc;
+    background: rgba(49, 124, 208, .15);
+    border: 1px solid rgba(97, 170, 252, .42);
+    border-radius: 11px;
+    font-size: 1rem;
+}
+
+.partner-bank-carousel {
+    padding: 0 2.4rem;
+}
+
+.partner-bank-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .45rem;
+    min-height: 92px;
+    padding: .7rem .5rem;
+    color: var(--light);
+    background: rgba(5, 24, 50, .55);
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 12px;
+    font-size: .78rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.partner-bank-card img {
+    width: 38px !important;
+    height: 38px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.partner-bank-more i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    color: #61aafc;
+    background: rgba(97, 170, 252, .12);
+    border-radius: 50%;
+}
+
+.partner-bank-carousel .owl-nav {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+.partner-bank-carousel .owl-nav button.owl-prev,
+.partner-bank-carousel .owl-nav button.owl-next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 31px;
+    height: 31px;
+    margin: 0;
+    color: var(--light);
+    background: rgba(49, 124, 208, .85);
+    border-radius: 50%;
+    pointer-events: auto;
+}
+
+.partner-bank-carousel .owl-nav button.owl-prev:hover,
+.partner-bank-carousel .owl-nav button.owl-next:hover {
+    color: var(--dark);
+    background: var(--primary);
+}
+
+.partner-bank-carousel .owl-dots {
+    display: none;
+}
+
+@media (max-width: 575.98px) {
+    .partner-banks-heading {
+        margin-bottom: .8rem;
+    }
+}
+
 
 /*** Footer ***/
 .footer .btn.btn-social {
