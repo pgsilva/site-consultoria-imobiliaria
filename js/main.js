@@ -98,12 +98,18 @@
     // Testimonials carousel
     $(".testimonial-carousel").owlCarousel({
         autoplay: true,
+        autoplayTimeout: 6000,
+        autoplayHoverPause: true,
         smartSpeed: 1000,
         center: true,
         margin: 24,
         dots: true,
         loop: true,
-        nav : false,
+        nav: true,
+        navText: [
+            '<i class="bi bi-arrow-left" aria-hidden="true"></i><span class="visually-hidden">Depoimento anterior</span>',
+            '<i class="bi bi-arrow-right" aria-hidden="true"></i><span class="visually-hidden">Próximo depoimento</span>'
+        ],
         responsive: {
             0:{
                 items:1
@@ -118,4 +124,3 @@
     });
     
 })(jQuery);
-
