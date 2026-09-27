@@ -322,7 +322,7 @@ html {
 .simulate-description {
     text-align: justify;
     text-justify: inter-word;
-    hyphens: none;
+    hyphens: auto;
 }
 
 .about-stat-text p {
@@ -353,14 +353,6 @@ html {
 
 .about-photo-building-wide {
     object-position: center;
-}
-
-.about-photo-credits {
-    margin-top: .65rem;
-    color: rgba(37, 51, 72, .62);
-    font-size: .64rem;
-    line-height: 1.45;
-    text-align: right;
 }
 
 .national-coverage {
@@ -1394,14 +1386,6 @@ h6 {
 
     .national-coverage .section-title {
         display: inline-block;
-    }
-
-    .justify-text,
-    .partner-lead,
-    .partner-copy,
-    .partner-cta > p,
-    .simulate-description {
-        text-align: left;
     }
 
     .back-to-top {
