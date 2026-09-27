@@ -95,6 +95,30 @@
     });
 
 
+    // Services carousel
+    $(".service-carousel").owlCarousel({
+        autoplay: true,
+        autoplayTimeout: 3500,
+        autoplayHoverPause: true,
+        smartSpeed: 650,
+        navSpeed: 650,
+        slideBy: 1,
+        margin: 28,
+        dots: false,
+        loop: true,
+        nav: true,
+        navElement: 'button type="button"',
+        navText: [
+            '<i class="bi bi-chevron-left" aria-hidden="true"></i><span class="visually-hidden">Serviços anteriores</span>',
+            '<i class="bi bi-chevron-right" aria-hidden="true"></i><span class="visually-hidden">Próximos serviços</span>'
+        ],
+        responsive: {
+            0: { items: 1 },
+            576: { items: 2 },
+            992: { items: 3 }
+        }
+    });
+
     // Testimonials carousel
     $(".testimonial-carousel").owlCarousel({
         autoplay: true,
