@@ -329,6 +329,40 @@ html {
     line-height: 1.25;
 }
 
+.about-photo {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    box-shadow: 0 12px 30px rgba(5, 24, 50, .16);
+}
+
+.about-photo-masp {
+    object-position: center;
+}
+
+.about-photo-whale {
+    object-position: center;
+}
+
+.about-photo-building {
+    object-position: center 42%;
+}
+
+.about-photo-building-tall {
+    object-position: center top;
+}
+
+.about-photo-building-wide {
+    object-position: center;
+}
+
+.about-photo-credits {
+    margin-top: .65rem;
+    color: rgba(37, 51, 72, .62);
+    font-size: .64rem;
+    line-height: 1.45;
+    text-align: right;
+}
+
 .national-coverage {
     display: grid;
     grid-template-columns: 210px minmax(0, 1fr);
