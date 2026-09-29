@@ -54,6 +54,8 @@
         .observacoes-card h2 { margin:0 0 10px; color:var(--azul); font-family:'Cinzel',serif; font-size:.95rem; }
         .observacoes-card p { margin:0; color:#4f5e72; line-height:1.65; white-space:pre-line; }
         .aviso { margin:22px 0 0; color:#6c7686; font-size:.8rem; line-height:1.45; }
+        .voltar-login { display:none; min-height:auto; margin:24px 0 0 auto; padding:9px 14px; border:1px solid rgba(0,23,53,.18); border-radius:999px; color:#607086; background:rgba(255,255,255,.7); font-size:.78rem; font-weight:600; letter-spacing:0; box-shadow:none; }
+        .voltar-login:hover,.voltar-login:focus-visible { color:var(--azul); border-color:rgba(0,23,53,.38); background:#fff; }
         .jornada { display:none; margin-top:26px; }
         .jornada.visivel { display:block; }
         .jornada h2 { margin:0 0 18px; color:var(--azul); font-family:'Cinzel',serif; font-size:1.05rem; }
@@ -64,6 +66,12 @@
         .etapa.concluida::before { background:var(--azul); box-shadow:0 0 0 2px var(--azul); }
         .etapa.atual { color:var(--azul); font-weight:700; }
         .etapa.atual::before { background:var(--dourado); box-shadow:0 0 0 3px var(--dourado-escuro); }
+        body.autenticado .site-header,body.autenticado .painel-marca,body.autenticado .conteudo>.marca,body.autenticado .conteudo>h1,body.autenticado .intro,body.autenticado #formulario,body.autenticado #mensagem { display:none; }
+        body.autenticado .login-shell { min-height:100vh; padding:clamp(18px,4vw,48px); }
+        body.autenticado main { display:block; width:min(100%,1220px); }
+        body.autenticado .conteudo { padding:clamp(28px,5vw,64px); }
+        body.autenticado .resultado { margin-top:0; }
+        body.autenticado .voltar-login { display:block; }
         @media(min-width:781px){.assinatura{transform:translateY(-55px)}}
         @media(max-width:1280px){.site-links{gap:14px}.site-links a{font-size:13px}}
         @media(max-width:1080px){.site-nav{align-items:flex-start;padding:13px 0}.site-links{flex-wrap:wrap;gap:8px 14px;max-width:760px}.site-brand{padding-top:2px}}
@@ -130,14 +138,16 @@
                 </ol>
             </section>
             <p class="aviso">Se ainda não recebeu seu código individual, entre em contato com a equipe Premium.</p>
+            <button id="voltar-login" class="voltar-login" type="button">← Voltar ao login</button>
         </section>
     </main>
     </div>
     <script>
-        const formulario=document.querySelector('#formulario'),cpf=document.querySelector('#cpf'),botao=document.querySelector('#botao'),mensagem=document.querySelector('#mensagem'),resultado=document.querySelector('#resultado'),jornada=document.querySelector('#jornada');let turnstileWidget;
+        const formulario=document.querySelector('#formulario'),cpf=document.querySelector('#cpf'),botao=document.querySelector('#botao'),mensagem=document.querySelector('#mensagem'),resultado=document.querySelector('#resultado'),jornada=document.querySelector('#jornada'),voltarLogin=document.querySelector('#voltar-login');let turnstileWidget;
         cpf.addEventListener('input',()=>{const d=cpf.value.replace(/\D/g,'').slice(0,11);cpf.value=d.replace(/^(\d{3})(\d)/,'$1.$2').replace(/^(\d{3})\.(\d{3})(\d)/,'$1.$2.$3').replace(/\.(\d{3})(\d)/,'.$1-$2')});
         async function config(){const response=await fetch('/api/config'),data=await response.json();if(data.turnstileSiteKey)turnstileWidget=turnstile.render('#turnstile',{sitekey:data.turnstileSiteKey})}
-        formulario.addEventListener('submit',async e=>{e.preventDefault();const d=cpf.value.replace(/\D/g,'');resultado.classList.remove('visivel');jornada.classList.remove('visivel');mensagem.className='';if(d.length!==11){mensagem.textContent='Digite um CPF com 11 números.';mensagem.className='erro';return}botao.disabled=true;mensagem.textContent='Validando acesso…';try{const token=turnstileWidget!==undefined?turnstile.getResponse(turnstileWidget):'';let r=await fetch('/api/cliente/entrar',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({cpf:d,codigo:document.querySelector('#codigo').value,turnstileToken:token})}),dados=await r.json();if(!r.ok)throw new Error(dados.error||'Não foi possível entrar.');r=await fetch('/api/cliente/processo');dados=await r.json();if(!r.ok)throw new Error(dados.error||'Não foi possível consultar o processo.');for(const [id,chave] of Object.entries({nome:'nome',valor:'valor',banco:'banco',status:'status',analista:'analista',observacoes:'observacoes'}))document.querySelector('#'+id).textContent=dados[chave];document.querySelectorAll('.etapa').forEach((item,i)=>{item.classList.toggle('concluida',dados.etapa>i);item.classList.toggle('atual',dados.etapa===i||dados.etapa>=6&&i===5)});mensagem.textContent='Processo localizado.';resultado.classList.add('visivel');jornada.classList.add('visivel')}catch(erro){mensagem.textContent=erro.message;mensagem.className='erro';if(turnstileWidget!==undefined)turnstile.reset(turnstileWidget)}finally{botao.disabled=false}});window.addEventListener('load',config);
+        formulario.addEventListener('submit',async e=>{e.preventDefault();const d=cpf.value.replace(/\D/g,'');resultado.classList.remove('visivel');jornada.classList.remove('visivel');mensagem.className='';if(d.length!==11){mensagem.textContent='Digite um CPF com 11 números.';mensagem.className='erro';return}botao.disabled=true;mensagem.textContent='Validando acesso…';try{const token=turnstileWidget!==undefined?turnstile.getResponse(turnstileWidget):'';let r=await fetch('/api/cliente/entrar',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({cpf:d,codigo:document.querySelector('#codigo').value,turnstileToken:token})}),dados=await r.json();if(!r.ok)throw new Error(dados.error||'Não foi possível entrar.');r=await fetch('/api/cliente/processo');dados=await r.json();if(!r.ok)throw new Error(dados.error||'Não foi possível consultar o processo.');for(const [id,chave] of Object.entries({nome:'nome',valor:'valor',banco:'banco',status:'status',analista:'analista',observacoes:'observacoes'}))document.querySelector('#'+id).textContent=dados[chave];document.querySelectorAll('.etapa').forEach((item,i)=>{item.classList.toggle('concluida',dados.etapa>i);item.classList.toggle('atual',dados.etapa===i||dados.etapa>=6&&i===5)});resultado.classList.add('visivel');jornada.classList.add('visivel');document.body.classList.add('autenticado');window.scrollTo({top:0,behavior:'smooth'})}catch(erro){mensagem.textContent=erro.message;mensagem.className='erro';if(turnstileWidget!==undefined)turnstile.reset(turnstileWidget)}finally{botao.disabled=false}});
+        voltarLogin.addEventListener('click',async()=>{voltarLogin.disabled=true;try{await fetch('/api/cliente/sair',{method:'POST'})}finally{window.location.href='/cliente'}});window.addEventListener('load',config);
     </script>
 </body>
 </html>
