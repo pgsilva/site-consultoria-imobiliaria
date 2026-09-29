@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Gerenciar acessos | Premium</title>
+  <link rel="icon" href="/img/logo-premium.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--azul:#001735;--azul2:#08274d;--ouro:#e8b94a;--creme:#f7f3e8;--texto:#10223d;--muted:#687589}*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--texto);background:#f2f4f7;font-family:Montserrat,sans-serif}header{padding:24px;background:linear-gradient(110deg,var(--azul),var(--azul2));color:#fff}.nav{width:min(1100px,calc(100% - 32px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:14px}.brand img{width:62px;height:62px;border:2px solid var(--ouro);border-radius:50%;object-fit:cover}.brand strong{display:block;color:var(--ouro);font-family:Cinzel,serif;font-size:1.25rem}.brand span{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}.secure{font-size:.72rem;color:rgba(255,255,255,.72)}main{width:min(1100px,calc(100% - 32px));margin:38px auto 70px}h1{margin:0;color:var(--azul);font-family:Cinzel,serif;font-size:clamp(1.7rem,4vw,2.6rem)}.lead{max-width:720px;margin:10px 0 28px;color:var(--muted);line-height:1.6}.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.card{padding:28px;border:1px solid #dfe4ea;border-radius:22px;background:#fff;box-shadow:0 12px 34px rgba(0,23,53,.07)}.card h2{margin:0;color:var(--azul);font-family:Cinzel,serif;font-size:1.15rem}.card p{color:var(--muted);font-size:.82rem;line-height:1.55}label{display:block;margin:20px 0 7px;color:var(--azul);font-size:.76rem;font-weight:700}input{width:100%;height:50px;border:2px solid #dce2e9;border-radius:12px;padding:0 15px;font:inherit;outline:0}input:focus{border-color:var(--ouro);box-shadow:0 0 0 4px rgba(232,185,74,.18)}.actions{display:flex;gap:10px;margin-top:18px}button{min-height:46px;border:0;border-radius:999px;padding:0 20px;font:700 .76rem Montserrat;cursor:pointer}.generate{color:var(--azul);background:var(--ouro)}.block{color:#fff;background:var(--azul)}button:disabled{opacity:.55;cursor:wait}.message{min-height:22px;margin:15px 0 0;font-size:.78rem;font-weight:600}.result{display:none;margin-top:18px;padding:18px;border:1px solid rgba(232,185,74,.65);border-radius:14px;background:var(--creme)}.result.visible{display:block}.result small{display:block;color:var(--muted)}.result strong{display:block;margin-top:8px;color:var(--azul);font-family:Cinzel,serif;font-size:1.65rem;letter-spacing:.08em}.warning{margin-top:25px;padding:17px 20px;border-left:4px solid var(--ouro);border-radius:10px;background:#fff;color:var(--muted);font-size:.78rem;line-height:1.55}@media(max-width:760px){.grid{grid-template-columns:1fr}.secure{display:none}.actions{flex-direction:column}}
+  </style>
+</head>
+<body>
+  <header><div class="nav"><div class="brand"><img src="/img/logo-premium.jpg" alt="Premium"><div><strong>Premium</strong><span>Administração dos portais</span></div></div><div class="secure">Acesso protegido pela Cloudflare</div></div></header>
+  <main>
+    <h1>Gerenciar acessos</h1>
+    <p class="lead">Gere um novo código ou bloqueie o acesso de clientes e parceiros. Um código novo substitui automaticamente o anterior.</p>
+    <div class="grid">
+      <form class="card" method="post" action="/administracao" autocomplete="off"><h2>Área do Cliente</h2><p>Localize o processo pelo CPF do proponente cadastrado na tabela Andamento.</p><label for="cpf">CPF do cliente</label><input id="cpf" name="cpf" inputmode="numeric" maxlength="14" placeholder="000.000.000-00" required><div class="actions"><button class="generate" type="submit" name="acao" value="cliente-gerar">Gerar novo código</button><button class="block" type="submit" name="acao" value="cliente-bloquear" data-confirm>Bloquear acesso</button></div><p class="message" role="status">%%CLIENT_MESSAGE%%</p><div class="result %%CLIENT_VISIBLE%%"><small>Novo código — copie agora</small><strong>%%CLIENT_CODE%%</strong></div></form>
+      <form class="card" method="post" action="/administracao" autocomplete="off"><h2>Área do Parceiro</h2><p>Use o e-mail habilitado em Carteira de Negócios. O campo “Acesso ao portal” deve estar marcado.</p><label for="email">E-mail do parceiro</label><input id="email" name="email" type="email" placeholder="parceiro@exemplo.com" required><div class="actions"><button class="generate" type="submit" name="acao" value="parceiro-gerar">Gerar novo código</button><button class="block" type="submit" name="acao" value="parceiro-bloquear" data-confirm>Bloquear acesso</button></div><p class="message" role="status">%%PARTNER_MESSAGE%%</p><div class="result %%PARTNER_VISIBLE%%"><small>Novo código — copie agora</small><strong>%%PARTNER_CODE%%</strong></div></form>
+    </div>
+    <p class="warning"><strong>Importante:</strong> o código é exibido somente no momento da geração. A Cloudflare guarda apenas uma versão criptografada. Entregue o código diretamente à pessoa correta.</p>
+  </main>
+  <script>
+    const digits=value=>value.replace(/\D/g,'');document.querySelector('#cpf').addEventListener('input',event=>{const d=digits(event.target.value).slice(0,11);event.target.value=d.replace(/^(\d{3})(\d)/,'$1.$2').replace(/^(\d{3})\.(\d{3})(\d)/,'$1.$2.$3').replace(/\.(\d{3})(\d)/,'.$1-$2')});
+    document.querySelectorAll('[data-confirm]').forEach(button=>button.addEventListener('click',event=>{if(!confirm('Deseja realmente bloquear este acesso?'))event.preventDefault()}));
+  </script>
+</body>
+</html>

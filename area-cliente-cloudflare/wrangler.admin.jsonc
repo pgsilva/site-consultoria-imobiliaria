@@ -1,0 +1,31 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "premium-administracao",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-27",
+  "workers_dev": true,
+  "preview_urls": false,
+  "placement": { "mode": "smart" },
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "html_handling": "none",
+    "run_worker_first": ["/api/*", "/administracao*"]
+  },
+  "observability": { "enabled": true },
+  "kv_namespaces": [
+    {
+      "binding": "PORTAL_KV",
+      "id": "ad4990439a774af297451e871f839fbb"
+    }
+  ],
+  "vars": {
+    "AIRTABLE_BASE_ID": "appfAaXSmh1baPQxe",
+    "AIRTABLE_TABLE_ID": "tbl8GR6y2eHnJisZA",
+    "AIRTABLE_ANALISTAS_TABLE_ID": "tblO0BRkbnWjYDL7L",
+    "AIRTABLE_PARCEIROS_TABLE_ID": "tblW59zMJGkYjmExx",
+    "TURNSTILE_SITE_KEY": "0x4AAAAAAFJJxFec5y3mUxjL",
+    "ACCESS_AUD": "a64b489cbd0fc13682ba2ba67b72db018edcb53f516e1411ddce1427e99b463e",
+    "ADMIN_EMAILS": "premium_assessoria@outlook.com"
+  }
+}

@@ -1,0 +1,4 @@
+.DS_Store
+area-cliente-cloudflare/node_modules/
+area-cliente-cloudflare/.wrangler/
+area-cliente-cloudflare/.dev.vars

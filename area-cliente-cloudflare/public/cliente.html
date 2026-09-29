@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Consulta de processo | Premium</title>
+    <link rel="icon" href="img/logo-premium.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500&family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <style>
+        :root { --azul:#001735; --azul-claro:#08274d; --dourado:#e8b94a; --dourado-escuro:#c99324; --fundo:#f7f3e8; --texto:#10223d; }
+        * { box-sizing:border-box; }
+        body { margin:0; min-height:100vh; display:grid; place-items:center; padding:clamp(18px,4vw,48px); color:var(--texto); background:linear-gradient(120deg,rgba(0,23,53,.96),rgba(0,23,53,.75)),url('img/bg-hero.jpg') center/cover fixed; font-family:'Montserrat',sans-serif; }
+        main { width:min(100%,1020px); display:grid; grid-template-columns:minmax(280px,.8fr) minmax(380px,1.2fr); overflow:hidden; border:1px solid rgba(232,185,74,.7); border-radius:30px; background:#fff; box-shadow:0 28px 80px rgba(0,0,0,.32); }
+        .painel-marca { position:relative; display:flex; flex-direction:column; justify-content:space-between; min-height:570px; padding:clamp(30px,5vw,52px); color:#fff; background:linear-gradient(155deg,rgba(0,23,53,.97),rgba(8,39,77,.91)),url('img/bg-hero.jpg') center/cover; }
+        .painel-marca::after { content:''; position:absolute; inset:18px; border:1px solid rgba(232,185,74,.38); border-radius:20px; pointer-events:none; }
+        .logo { position:relative; z-index:1; width:112px; height:112px; object-fit:cover; border:2px solid rgba(232,185,74,.72); border-radius:50%; box-shadow:0 12px 30px rgba(0,0,0,.3); }
+        .assinatura { position:relative; z-index:1; }
+        .assinatura strong { display:block; color:var(--dourado); font-family:'Bodoni Moda',serif; font-size:clamp(2.2rem,5vw,3.45rem); font-weight:500; line-height:.95; }
+        .assinatura span { display:block; margin-top:12px; font-family:'Cinzel',serif; font-size:.88rem; letter-spacing:.14em; text-transform:uppercase; }
+        .assinatura p { margin:20px 0 0; color:rgba(255,255,255,.75); line-height:1.65; }
+        .conteudo { padding:clamp(30px,6vw,58px); }
+        .marca { margin:0 0 12px; color:var(--dourado-escuro); font-size:.75rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; }
+        h1 { margin:0 0 12px; color:var(--azul); font-family:'Cinzel',serif; font-size:clamp(1.18rem,3vw,2rem); line-height:1.15; white-space:nowrap; }
+        .intro { margin:0 0 28px; line-height:1.6; }
+        label { display:block; margin-bottom:8px; color:var(--azul); font-weight:700; }
+        .consulta { display:grid; gap:12px; }
+        input,button { min-height:52px; border-radius:999px; font:inherit; }
+        input { width:100%; border:2px solid #dce2e9; padding:0 20px; outline:none; }
+        input:focus { border-color:var(--dourado); box-shadow:0 0 0 4px rgba(232,185,74,.2); }
+        button { border:0; padding:0 25px; color:var(--azul); background:var(--dourado); font-weight:700; letter-spacing:.03em; cursor:pointer; box-shadow:0 10px 24px rgba(201,147,36,.2); }
+        button:hover { background:var(--dourado-escuro); }
+        button:disabled { cursor:wait; opacity:.65; }
+        #mensagem { min-height:24px; margin:16px 0 0; font-weight:700; }
+        .erro { color:#a32626; }
+        .resultado { display:none; margin-top:24px; padding:22px; border-left:5px solid var(--dourado); border-radius:14px; background:var(--fundo); }
+        .resultado.visivel { display:block; }
+        dl { display:grid; grid-template-columns:145px 1fr; gap:13px 18px; margin:0; }
+        dt { color:var(--azul); font-weight:700; }
+        dd { margin:0; overflow-wrap:anywhere; }
+        .observacoes-card { margin-top:18px; padding:20px 22px; border:1px solid rgba(0,23,53,.12); border-radius:14px; background:#fff; box-shadow:0 10px 26px rgba(0,23,53,.07); }
+        .observacoes-card h2 { margin:0 0 10px; color:var(--azul); font-family:'Cinzel',serif; font-size:.95rem; }
+        .observacoes-card p { margin:0; color:#4f5e72; line-height:1.65; white-space:pre-line; }
+        .aviso { margin:22px 0 0; color:#6c7686; font-size:.8rem; line-height:1.45; }
+        .jornada { display:none; margin-top:26px; }
+        .jornada.visivel { display:block; }
+        .jornada h2 { margin:0 0 18px; color:var(--azul); font-family:'Cinzel',serif; font-size:1.05rem; }
+        .etapas { display:flex; position:relative; justify-content:space-between; gap:8px; margin:0; padding:0; list-style:none; }
+        .etapas::before { content:''; position:absolute; top:15px; right:6%; left:6%; height:3px; background:#dce2e9; }
+        .etapa { position:relative; z-index:1; flex:1; color:#7a8492; text-align:center; font-size:.68rem; font-weight:600; line-height:1.35; }
+        .etapa::before { content:''; display:block; width:30px; height:30px; margin:0 auto 9px; border:4px solid #fff; border-radius:50%; background:#dce2e9; box-shadow:0 0 0 2px #dce2e9; }
+        .etapa.concluida::before { background:var(--azul); box-shadow:0 0 0 2px var(--azul); }
+        .etapa.atual { color:var(--azul); font-weight:700; }
+        .etapa.atual::before { background:var(--dourado); box-shadow:0 0 0 3px var(--dourado-escuro); }
+        @media(max-width:780px){ main{grid-template-columns:1fr}.painel-marca{min-height:265px;padding:34px}.logo{width:82px;height:82px}.assinatura p{display:none} }
+        @media(max-width:540px){ body{padding:12px}main{border-radius:22px}.consulta{grid-template-columns:1fr}dl{grid-template-columns:1fr;gap:4px}dd{margin-bottom:11px}.etapas{display:grid;grid-template-columns:1fr 1fr;gap:14px}.etapas::before{display:none}.etapa{display:flex;align-items:center;text-align:left}.etapa::before{flex:0 0 auto;margin:0 10px 0 0} }
+    </style>
+</head>
+<body>
+    <main>
+        <aside class="painel-marca" aria-label="Premium Assessoria Imobiliária">
+            <img class="logo" src="img/logo-premium.jpg" alt="Logotipo da Premium Assessoria Imobiliária">
+            <div class="assinatura">
+                <strong>Premium</strong>
+                <span>Assessoria Imobiliária</span>
+                <p>Segurança, agilidade e acompanhamento especializado em cada etapa da sua operação.</p>
+            </div>
+        </aside>
+        <section class="conteudo">
+            <p class="marca">Área do cliente</p>
+            <h1>Acompanhe seu processo</h1>
+            <p class="intro">Informe o CPF do proponente e o código individual fornecido pela Premium.</p>
+            <form id="formulario">
+                <label for="cpf">CPF do proponente</label>
+                <div class="consulta">
+                    <input id="cpf" name="cpf" inputmode="numeric" autocomplete="username" maxlength="14" placeholder="000.000.000-00" required>
+                    <label for="codigo">Código individual</label>
+                    <input id="codigo" name="codigo" type="password" autocomplete="current-password" maxlength="12" placeholder="XXXX-XXXX" required>
+                    <div id="turnstile"></div>
+                    <button id="botao" type="submit">Acessar meu processo</button>
+                </div>
+            </form>
+            <p id="mensagem" role="status" aria-live="polite"></p>
+            <section id="resultado" class="resultado" aria-label="Resultado da consulta">
+                <dl>
+                    <dt>Cliente</dt><dd id="nome"></dd>
+                    <dt>Valor</dt><dd id="valor"></dd>
+                    <dt>Banco</dt><dd id="banco"></dd>
+                    <dt>Status</dt><dd id="status"></dd>
+                    <dt>Analista responsável</dt><dd id="analista"></dd>
+                </dl>
+                <div class="observacoes-card">
+                    <h2>Observações e atualizações</h2>
+                    <p id="observacoes"></p>
+                </div>
+            </section>
+            <section id="jornada" class="jornada" aria-label="Evolução do processo">
+                <h2>Evolução do processo</h2>
+                <ol class="etapas">
+                    <li class="etapa">Análise de crédito</li>
+                    <li class="etapa">Checklist 1</li>
+                    <li class="etapa">Avaliação do imóvel</li>
+                    <li class="etapa">Checklist 2</li>
+                    <li class="etapa">Análise jurídica e emissão</li>
+                    <li class="etapa">Assinatura e registro</li>
+                </ol>
+            </section>
+            <p class="aviso">Se ainda não recebeu seu código individual, entre em contato com a equipe Premium.</p>
+        </section>
+    </main>
+    <script>
+        const formulario=document.querySelector('#formulario'),cpf=document.querySelector('#cpf'),botao=document.querySelector('#botao'),mensagem=document.querySelector('#mensagem'),resultado=document.querySelector('#resultado'),jornada=document.querySelector('#jornada');let turnstileWidget;
+        cpf.addEventListener('input',()=>{const d=cpf.value.replace(/\D/g,'').slice(0,11);cpf.value=d.replace(/^(\d{3})(\d)/,'$1.$2').replace(/^(\d{3})\.(\d{3})(\d)/,'$1.$2.$3').replace(/\.(\d{3})(\d)/,'.$1-$2')});
+        async function config(){const response=await fetch('/api/config'),data=await response.json();if(data.turnstileSiteKey)turnstileWidget=turnstile.render('#turnstile',{sitekey:data.turnstileSiteKey})}
+        formulario.addEventListener('submit',async e=>{e.preventDefault();const d=cpf.value.replace(/\D/g,'');resultado.classList.remove('visivel');jornada.classList.remove('visivel');mensagem.className='';if(d.length!==11){mensagem.textContent='Digite um CPF com 11 números.';mensagem.className='erro';return}botao.disabled=true;mensagem.textContent='Validando acesso…';try{const token=turnstileWidget!==undefined?turnstile.getResponse(turnstileWidget):'';let r=await fetch('/api/cliente/entrar',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({cpf:d,codigo:document.querySelector('#codigo').value,turnstileToken:token})}),dados=await r.json();if(!r.ok)throw new Error(dados.error||'Não foi possível entrar.');r=await fetch('/api/cliente/processo');dados=await r.json();if(!r.ok)throw new Error(dados.error||'Não foi possível consultar o processo.');for(const [id,chave] of Object.entries({nome:'nome',valor:'valor',banco:'banco',status:'status',analista:'analista',observacoes:'observacoes'}))document.querySelector('#'+id).textContent=dados[chave];document.querySelectorAll('.etapa').forEach((item,i)=>{item.classList.toggle('concluida',dados.etapa>i);item.classList.toggle('atual',dados.etapa===i||dados.etapa>=6&&i===5)});mensagem.textContent='Processo localizado.';resultado.classList.add('visivel');jornada.classList.add('visivel')}catch(erro){mensagem.textContent=erro.message;mensagem.className='erro';if(turnstileWidget!==undefined)turnstile.reset(turnstileWidget)}finally{botao.disabled=false}});window.addEventListener('load',config);
+    </script>
+</body>
+</html>

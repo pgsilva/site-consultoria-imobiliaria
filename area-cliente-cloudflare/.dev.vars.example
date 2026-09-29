@@ -1,0 +1,7 @@
+# Copie para .dev.vars somente no computador de desenvolvimento.
+# Nunca faça commit do arquivo .dev.vars real.
+AIRTABLE_TOKEN=adicione_o_token_localmente
+CODE_PEPPER=gere_uma_frase_aleatoria_longa
+SESSION_SECRET=gere_outra_frase_aleatoria_longa
+ADMIN_SECRET=gere_um_segredo_administrativo_longo
+TURNSTILE_SECRET=adicione_a_chave_secreta_do_turnstile
