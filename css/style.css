@@ -213,6 +213,13 @@ html {
     }
 }
 
+@media (min-width: 992px) and (max-width: 1499.98px) {
+    .navbar-dark .navbar-nav .nav-link {
+        margin-left: 14px;
+        font-size: 13px;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;

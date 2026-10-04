@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Solicite sua simulação de financiamento imobiliário com a Premium Assessoria Imobiliária.">
+    <title>Simulação | Premium Assessoria Imobiliária</title>
+    <link href="img/logo-premium.jpg" rel="icon">
+    <meta name="theme-color" content="#001735">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Cinzel:wght@500;600;700&family=Montserrat:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css?v=20261003-1" rel="stylesheet">
+    <link href="css/simulacao.css?v=20261003-2" rel="stylesheet">
+</head>
+<body class="simulation-page">
+    <div class="container-xxl bg-white p-0">
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" role="status"><span class="sr-only">Carregando</span></div>
+        </div>
+
+        <header class="container-xxl position-relative p-0" id="navbar">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
+                <a href="index.html" class="navbar-brand p-0"><img src="img/logo-premium.jpg" alt="Premium Assessoria Imobiliária"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Abrir menu de navegação">
+                    <span class="fa fa-bars" aria-hidden="true"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0 pe-4">
+                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="index.html#servicos" class="nav-item nav-link">Serviços</a>
+                        <a href="index.html#sobre" class="nav-item nav-link">Sobre Nós</a>
+                        <a href="index.html#depoimentos" class="nav-item nav-link">Depoimentos</a>
+                        <a href="index.html#parceiros" class="nav-item nav-link">Seja parceiro</a>
+                        <a href="index.html#contato" class="nav-item nav-link">Contato</a>
+                        <a href="simulacao.html" class="nav-item nav-link active" aria-current="page">Simulação</a>
+                        <a href="https://premium-portais.premium-assessoria.workers.dev/cliente" class="nav-item nav-link">Área do Cliente</a>
+                        <a href="https://premium-portais.premium-assessoria.workers.dev/parceiro" class="nav-item nav-link">Área do Parceiro</a>
+                        <a href="blog.html" class="nav-item nav-link">Blog</a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="simulation-hero">
+                <div class="simulation-hero-content">
+                    <p class="simulation-eyebrow">Financiamento imobiliário</p>
+                    <h1>Faça sua simulação</h1>
+                    <p>Preencha os dados abaixo para que nossa equipe compare as condições e encontre a melhor alternativa para você.</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="simulation-main">
+            <form id="simulationForm" novalidate>
+                <section class="simulation-card" aria-labelledby="contactTitle">
+                    <div class="section-heading">
+                        <span class="section-number">1</span>
+                        <div><h2 id="contactTitle">Seus dados</h2><p>Usaremos essas informações somente para retornar sua solicitação.</p></div>
+                    </div>
+                    <div class="simulation-grid simulation-grid-three">
+                        <div class="form-field">
+                            <label for="nome">Nome completo <span aria-hidden="true">*</span></label>
+                            <input id="nome" name="nome" type="text" autocomplete="name" required placeholder="Digite seu nome">
+                        </div>
+                        <div class="form-field">
+                            <label for="email">E-mail <span aria-hidden="true">*</span></label>
+                            <input id="email" name="email" type="email" autocomplete="email" required placeholder="voce@exemplo.com">
+                        </div>
+                        <div class="form-field">
+                            <label for="telefone">Telefone com DDD <span aria-hidden="true">*</span></label>
+                            <input id="telefone" name="telefone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="15" required placeholder="(11) 99999-9999">
+                        </div>
+                    </div>
+                </section>
+
+                <section class="simulation-card" aria-labelledby="generalTitle">
+                    <div class="section-heading">
+                        <span class="section-number">2</span>
+                        <div><h2 id="generalTitle">Dados gerais</h2><p>Informe as características principais do financiamento.</p></div>
+                    </div>
+                    <div class="simulation-grid simulation-grid-four">
+                        <div class="form-field">
+                            <label for="tipoImovel">Tipo de imóvel <span aria-hidden="true">*</span></label>
+                            <select id="tipoImovel" name="tipoImovel" required>
+                                <option value="Residencial">Residencial</option>
+                                <option value="Comercial">Comercial</option>
+                                <option value="Terreno">Terreno</option>
+                            </select>
+                            <small>Operação imobiliária</small>
+                        </div>
+                        <div class="form-field">
+                            <label for="valorImovel">Valor do imóvel (valor de venda) <span aria-hidden="true">*</span></label>
+                            <input id="valorImovel" name="valorImovel" type="text" inputmode="numeric" required placeholder="R$ 0,00">
+                            <small>Valor mínimo: R$ 100.000,00</small>
+                        </div>
+                        <div class="form-field">
+                            <label for="calculoPor">Simulação calculada por <span aria-hidden="true">*</span></label>
+                            <select id="calculoPor" name="calculoPor" required>
+                                <option value="Valor do financiamento">Valor do financiamento</option>
+                                <option value="Valor da entrada">Valor da entrada</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label for="valorFinanciado"><span id="calculationValueLabel">Valor financiado</span> <span aria-hidden="true">*</span></label>
+                            <input id="valorFinanciado" name="valorFinanciado" type="text" inputmode="numeric" required disabled placeholder="R$ 0,00">
+                            <small id="financeHelp">Preencha o valor do imóvel</small>
+                        </div>
+                        <div class="form-field">
+                            <label for="nascimento">Data de nascimento do proponente <span aria-hidden="true">*</span></label>
+                            <input id="nascimento" name="nascimento" type="text" inputmode="numeric" autocomplete="bday" maxlength="10" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" required placeholder="DD/MM/AAAA">
+                            <small>Digite a data completa, por exemplo: 01/05/1996</small>
+                        </div>
+                        <div class="form-field">
+                            <label for="prazo">Prazo de financiamento <span aria-hidden="true">*</span></label>
+                            <input id="prazo" name="prazo" type="number" inputmode="numeric" min="1" step="1" required disabled placeholder="Ex.: 240">
+                            <small id="termHelp" aria-live="polite">Preencha a data de nascimento do proponente</small>
+                        </div>
+                        <div class="form-field">
+                            <label for="amortizacao">Sistema amortizador <span aria-hidden="true">*</span></label>
+                            <select id="amortizacao" name="amortizacao" required>
+                                <option value="SAC">SAC</option>
+                            </select>
+                        </div>
+                        <fieldset class="form-field choice-field">
+                            <legend>Incluir despesas no financiamento? <span aria-hidden="true">*</span></legend>
+                            <div class="choice-row">
+                                <label><input type="radio" name="despesas" value="Sim" required><span>Sim</span></label>
+                                <label><input type="radio" name="despesas" value="Não" checked><span>Não</span></label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </section>
+
+                <div class="simulation-lower-grid">
+                <section class="simulation-card" aria-labelledby="segmentTitle">
+                    <div class="section-heading compact">
+                        <span class="section-number">3</span>
+                        <div><h2 id="segmentTitle">Banco para simulação</h2><p>Nesta etapa de testes, a simulação está disponível somente para o Bradesco.</p></div>
+                    </div>
+                    <div class="bank-selection">
+                        <fieldset class="bank-selector">
+                            <legend>Selecione o banco <span aria-hidden="true">*</span></legend>
+                            <div class="bank-options">
+                                <div class="bank-option">
+                                    <input id="bankBradesco" type="radio" name="banco" value="Bradesco" checked required>
+                                    <label class="bank-card" for="bankBradesco" title="Bradesco disponível">
+                                        <img src="img/banks/bradesco.png" alt="">
+                                        <span class="visually-hidden">Bradesco — disponível</span>
+                                    </label>
+                                </div>
+                                <div class="bank-option">
+                                    <input id="bankItau" type="radio" name="banco" value="Itaú" disabled>
+                                    <label class="bank-card" for="bankItau" aria-disabled="true" title="Itaú em breve">
+                                        <img src="img/banks/itau.png" alt="">
+                                        <span class="visually-hidden">Itaú — em breve</span>
+                                    </label>
+                                </div>
+                                <div class="bank-option">
+                                    <input id="bankSantander" type="radio" name="banco" value="Santander" disabled>
+                                    <label class="bank-card" for="bankSantander" aria-disabled="true" title="Santander em breve">
+                                        <img src="img/banks/santander.png" alt="">
+                                        <span class="visually-hidden">Santander — em breve</span>
+                                    </label>
+                                </div>
+                                <div class="bank-option">
+                                    <input id="bankInter" type="radio" name="banco" value="Inter" disabled>
+                                    <label class="bank-card" for="bankInter" aria-disabled="true" title="Inter em breve">
+                                        <img src="img/banks/inter.png" alt="">
+                                        <span class="visually-hidden">Inter — em breve</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <p class="bank-help">Bradesco disponível para teste. Os demais bancos estarão disponíveis em breve.</p>
+                        </fieldset>
+                    </div>
+                </section>
+
+                <section class="simulation-card" aria-labelledby="rateTitle">
+                    <div class="section-heading compact">
+                        <span class="section-number">4</span>
+                        <div><h2 id="rateTitle">Taxa de juros</h2><p>Selecione a taxa disponível para a simulação do Bradesco. É possível reduzir sua taxa abrindo a conta na instituição. Consulte a assessoria.</p></div>
+                    </div>
+                    <div class="form-field rate-field">
+                        <label for="taxa">Taxa do Bradesco <span aria-hidden="true">*</span></label>
+                        <select id="taxa" name="taxa" required>
+                            <option value="">Selecione</option>
+                            <option value="11.45">11,45% a.a. — Funcionário I</option>
+                            <option value="11.70">11,70% a.a. — Funcionário II</option>
+                            <option value="11.70">11,70% a.a. — Principal I</option>
+                            <option value="11.90">11,90% a.a. — Principal II</option>
+                            <option value="12.30">12,30% a.a. — Prime I</option>
+                            <option value="12.45">12,45% a.a. — Prime II</option>
+                        </select>
+                    </div>
+                </section>
+                </div>
+
+                <section class="simulation-submit">
+                    <p><i class="fas fa-file-pdf" aria-hidden="true"></i> O resultado será gerado em PDF e aberto em uma nova aba.</p>
+                    <button type="submit">Simular <i class="fas fa-file-pdf" aria-hidden="true"></i></button>
+                    <div id="formMessage" class="form-message" role="alert" aria-live="polite"></div>
+                </section>
+            </form>
+        </main>
+
+        <footer class="container-fluid bg-dark text-light footer pt-5 mt-5">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-lg-4 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Empresa</h4>
+                        <a class="btn btn-link" href="index.html#sobre">Sobre nós</a>
+                        <a class="btn btn-link" href="index.html#contato">Contato</a>
+                        <a class="btn btn-link" href="simulacao.html">Simulação</a>
+                        <a class="btn btn-link" href="blog.html">Blog</a>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contato</h4>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3" aria-hidden="true"></i>Avenida Paulista, 1636 — São Paulo</p>
+                        <p class="mb-2"><i class="fa fa-phone-alt me-3" aria-hidden="true"></i><a class="text-light text-decoration-none" href="tel:+5511954727371">(11) 95472-7371</a></p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3" aria-hidden="true"></i><a class="text-light text-decoration-none" href="mailto:atendimento@assessoriapremium.com.br">atendimento@assessoriapremium.com.br</a></p>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Funcionamento</h4>
+                        <h5 class="text-light fw-normal">Segunda a sexta</h5><p>9h às 18h</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <a class="whatsapp-float" href="https://wa.me/5511954727371" target="_blank" rel="noopener noreferrer" aria-label="Falar com a Premium pelo WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+        <a href="#navbar" class="btn btn-lg btn-primary btn-lg-square back-to-top" aria-label="Voltar ao topo"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="js/main.js?v=20260927-4"></script>
+    <script src="lib/pdf-lib/pdf-lib.min.js"></script>
+    <script src="js/simulacao-pdf-assets.js?v=20261003-3"></script>
+    <script src="js/simulacao-pdf.js?v=20261004-5"></script>
+    <script src="js/simulacao.js?v=20261004-7"></script>
+</body>
+</html>
