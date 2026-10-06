@@ -19,6 +19,18 @@ export default {
       if ((url.pathname === "/administracao" || url.pathname === "/administracao/") && request.method === "GET") {
         return adminPage(request, env);
       }
+      if ((url.pathname === "/administracao/simulador" || url.pathname === "/administracao/simulador/") && request.method === "GET") {
+        if (!(await authorizedAdmin(request, env))) return new Response("Não autorizado.", { status: 401 });
+        return protectedAsset(request, env, "/simulador-interno.html");
+      }
+      if ((url.pathname === "/administracao/comparativo" || url.pathname === "/administracao/comparativo/") && request.method === "GET") {
+        if (!(await authorizedAdmin(request, env))) return new Response("Não autorizado.", { status: 401 });
+        return protectedAsset(request, env, "/comparativo-contratos.html");
+      }
+      if (url.pathname.startsWith("/administracao/assets/") && request.method === "GET") {
+        if (!(await authorizedAdmin(request, env))) return new Response("Não autorizado.", { status: 401 });
+        return protectedAsset(request, env, url.pathname.replace("/administracao/assets", ""));
+      }
       if (apiPath === "/api/config" && request.method === "GET") {
         return json({ turnstileSiteKey: env.TURNSTILE_SITE_KEY });
       }
@@ -128,6 +140,17 @@ async function adminPage(request, env, state = {}) {
   };
   Object.entries(values).forEach(([key, value]) => { html = html.replaceAll(key, value); });
   return new Response(html, { status: 200, headers: securityHeaders({ "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" }) });
+}
+
+async function protectedAsset(request, env, pathname) {
+  const assetUrl = new URL(request.url);
+  assetUrl.pathname = pathname;
+  const response = await env.ASSETS.fetch(new Request(assetUrl));
+  if (!response.ok) return response;
+  return new Response(response.body, {
+    status: response.status,
+    headers: securityHeaders({ "Content-Type": response.headers.get("Content-Type") || "text/html; charset=utf-8", "Cache-Control": "no-store" }),
+  });
 }
 
 async function storeClientCode(cpf, env) {

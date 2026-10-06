@@ -1,0 +1,119 @@
+.comparison-page { min-height: 100vh; }
+
+.comparison-hero {
+    min-height: 240px;
+    display: grid;
+    place-items: center;
+    padding: 48px 24px 70px;
+    color: #fff;
+    text-align: center;
+    background: linear-gradient(115deg, rgba(0,23,53,.97), rgba(8,39,77,.86)), url('../img/bg-hero.jpg') center/cover;
+}
+
+.comparison-hero h1 {
+    margin: 0;
+    color: #fff;
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.1rem, 5vw, 3.75rem);
+}
+
+.comparison-hero p:last-child { max-width: 720px; margin: 16px auto 0; color: rgba(255,255,255,.8); line-height: 1.65; }
+
+.comparison-main { width: min(1320px, calc(100% - 36px)); margin: -42px auto 0; position: relative; z-index: 2; }
+
+.comparison-intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 22px;
+    padding: 22px 24px;
+    border: 1px solid rgba(0,23,53,.08);
+    border-radius: 12px;
+    background: #fff;
+}
+
+.comparison-intro-copy { flex: 1 1 480px; }
+.client-field { flex: 0 1 285px; }
+.comparison-intro h2,
+.results-heading h2 { margin: 0; color: var(--dark); font-family: 'Cinzel', serif; }
+.comparison-intro p { max-width: 850px; margin: 7px 0 0; color: var(--muted); font-size: .8rem; line-height: 1.55; }
+.comparison-intro button { flex: 0 0 auto; min-height: 42px; padding: 0 18px; border: 1px solid rgba(0,23,53,.16); border-radius: 999px; color: var(--dark); background: #fff; font-weight: 700; cursor: pointer; }
+.comparison-intro button:hover { border-color: var(--primary); background: #fffaf0; }
+
+.contracts-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+
+.contract-card {
+    padding: 25px;
+    border: 1px solid #dfe4ea;
+    border-radius: 12px;
+    background: #fff;
+}
+
+.contract-heading { display: flex; align-items: center; gap: 13px; margin-bottom: 24px; }
+.contract-heading > span { width: 37px; height: 37px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: var(--dark); font-weight: 700; }
+.contract-two .contract-heading > span { color: var(--dark); background: var(--primary); }
+.contract-heading h2 { margin: 0; color: var(--dark); font-family: 'Cinzel', serif; font-size: 1.3rem; }
+.contract-heading p { margin: 3px 0 0; color: var(--muted); font-size: .75rem; }
+.contract-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.full-field { grid-column: 1 / -1; }
+.percent-field { position: relative; }
+.percent-field input { padding-right: 74px; }
+.percent-field span { position: absolute; right: 17px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: .75rem; font-weight: 700; pointer-events: none; }
+.contract-error { min-height: 18px; margin: 17px 0 0; color: #b42318; font-size: .76rem; font-weight: 650; }
+
+.comparison-results { margin-top: 26px; padding: 30px; border-radius: 16px; color: #fff; background: var(--dark); box-shadow: 0 15px 36px rgba(0,23,53,.16); }
+.results-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; margin-bottom: 25px; }
+.results-heading h2 { color: #fff; font-size: 1.65rem; }
+.results-heading .simulation-eyebrow { margin-bottom: 7px; }
+.comparison-summary { max-width: 570px; margin: 0; color: rgba(255,255,255,.72); font-size: .8rem; line-height: 1.55; text-align: right; }
+.result-actions { max-width: 590px; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.result-actions button { min-height: 42px; padding: 0 19px; border: 0; border-radius: 999px; color: var(--dark); background: var(--primary); font-weight: 750; cursor: pointer; }
+.result-actions button:disabled { opacity: .48; cursor: not-allowed; }
+.pdf-message { min-height: 16px; margin: 0; color: #ffd66f; font-size: .72rem; font-weight: 650; }
+.result-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 22px; }
+.result-metrics article { padding: 20px; border: 1px solid rgba(255,255,255,.13); border-radius: 16px; background: rgba(255,255,255,.07); }
+.result-metrics span { display: block; color: rgba(255,255,255,.68); font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.result-metrics strong { display: block; margin: 9px 0 6px; color: #fff; font-family: 'Cinzel', serif; font-size: clamp(1.2rem, 2.4vw, 1.8rem); }
+.result-metrics small { color: rgba(255,255,255,.64); font-size: .71rem; }
+.result-metrics small b { color: #fff; }
+.result-metrics .best-result { border-color: rgba(232,185,74,.75); background: rgba(232,185,74,.14); }
+.result-metrics .best-result strong { color: var(--primary); }
+
+.charts-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.chart-card { min-width: 0; padding: 21px; border-radius: 16px; color: var(--ink); background: #fff; }
+.chart-card h3 { margin: 0; color: var(--dark); font-family: 'Cinzel', serif; font-size: 1rem; }
+.chart-card > p { min-height: 34px; margin: 6px 0 18px; color: var(--muted); font-size: .69rem; line-height: 1.45; }
+.chart-row + .chart-row { margin-top: 17px; }
+.chart-label { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 7px; font-size: .71rem; }
+.chart-label span { max-width: 54%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 650; }
+.chart-label strong { color: var(--dark); }
+.bar-track { height: 14px; overflow: hidden; border-radius: 999px; background: #edf0f4; }
+.bar-fill { width: 0; height: 100%; min-width: 0; border-radius: inherit; background: var(--dark); transition: width .35s ease; }
+.chart-row.contract-two-row .bar-fill { background: var(--primary); }
+.chart-row.contract-two-row .chart-label strong { color: #9b6d0f; }
+
+@media (max-width: 980px) {
+    .internal-secure { display: none; }
+    .contracts-grid,
+    .charts-grid { grid-template-columns: 1fr; }
+    .charts-grid { gap: 12px; }
+    .chart-card > p { min-height: 0; }
+}
+
+@media (max-width: 680px) {
+    .comparison-hero { min-height: 250px; padding: 50px 20px 70px; }
+    .comparison-main { width: min(100% - 22px, 1320px); }
+    .comparison-intro,
+    .results-heading { align-items: stretch; flex-direction: column; }
+    .client-field { flex-basis: auto; }
+    .comparison-intro button { width: 100%; }
+    .contract-card,
+    .comparison-results { padding: 22px 18px; }
+    .contract-fields,
+    .result-metrics { grid-template-columns: 1fr; }
+    .full-field { grid-column: auto; }
+    .comparison-summary { text-align: left; }
+    .result-actions { max-width: none; align-items: stretch; }
+    .result-actions button { width: 100%; }
+}

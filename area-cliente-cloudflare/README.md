@@ -7,6 +7,8 @@ Worker responsável pelas áreas do Cliente e do Parceiro. O token do Airtable e
 - `/cliente`: login e acompanhamento individual do cliente.
 - `/parceiro`: login separado do parceiro.
 - `/parceiro/painel`: processos associados ao parceiro pelo campo `Indicação`.
+- `/administracao/simulador`: simulador interno da equipe, protegido pelo mesmo Cloudflare Access da administração.
+- `/administracao/comparativo`: comparativo interno de contratos, parcelas, taxas e juros.
 
 ## Configuração concluída
 

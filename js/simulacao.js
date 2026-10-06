@@ -26,6 +26,33 @@
     ];
     var expensesRatio = 0.05;
 
+    function showPdfInBrowser(resultWindow, pdfBytes) {
+        var pdfUrl = URL.createObjectURL(new Blob([pdfBytes], { type: 'application/pdf' }));
+        var document = resultWindow.document;
+        document.title = 'Simulação Premium';
+        document.head.innerHTML = '<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">';
+        document.body.innerHTML = '';
+        document.body.style.cssText = 'margin:0;min-height:100vh;display:flex;flex-direction:column;background:#202124;font-family:Arial,sans-serif';
+
+        var toolbar = document.createElement('div');
+        toolbar.style.cssText = 'min-height:52px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 18px;color:#fff;background:#001735';
+        var title = document.createElement('strong');
+        title.textContent = 'Simulação Premium';
+        var download = document.createElement('a');
+        download.href = pdfUrl;
+        download.download = 'simulacao-premium.pdf';
+        download.textContent = 'Baixar PDF';
+        download.style.cssText = 'padding:9px 14px;border-radius:999px;color:#001735;background:#e8b94a;font-size:13px;font-weight:700;text-decoration:none';
+        toolbar.append(title, download);
+
+        var viewer = document.createElement('iframe');
+        viewer.title = 'PDF da simulação';
+        viewer.src = pdfUrl;
+        viewer.style.cssText = 'width:100%;flex:1;border:0;background:#fff';
+        document.body.append(toolbar, viewer);
+        window.setTimeout(function () { URL.revokeObjectURL(pdfUrl); }, 300000);
+    }
+
     function isCommercial() {
         return propertyType.value === 'Comercial';
     }
@@ -366,9 +393,7 @@
                 expenses: selected('despesas')
             });
             var pdfBytes = await window.PremiumSimulationPdf.createPdfBytes(result);
-            var pdfUrl = URL.createObjectURL(new Blob([pdfBytes], { type: 'application/pdf' }));
-            resultWindow.location.replace(pdfUrl);
-            window.setTimeout(function () { URL.revokeObjectURL(pdfUrl); }, 300000);
+            showPdfInBrowser(resultWindow, pdfBytes);
         } catch (error) {
             resultWindow.close();
             formMessage.textContent = 'Não foi possível gerar o PDF. Atualize a página e tente novamente.';

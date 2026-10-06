@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#001735">
+  <title>Comparativo de contratos | Premium Assessoria Imobiliária</title>
+  <link rel="icon" href="/administracao/assets/img/logo-premium.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="/administracao/assets/css/simulador-interno.css?v=20261005-3" rel="stylesheet">
+  <link href="/administracao/assets/css/comparativo-contratos.css?v=20261006-1" rel="stylesheet">
+</head>
+<body class="simulation-page comparison-page">
+  <header class="internal-header">
+    <div class="internal-nav">
+      <a class="internal-brand" href="/administracao">
+        <img src="/administracao/assets/img/logo-premium.jpg" alt="Premium Assessoria Imobiliária">
+        <span><strong>Premium</strong><small>Ferramentas internas</small></span>
+      </a>
+      <nav aria-label="Navegação interna">
+        <a href="/administracao">Gerenciar acessos</a>
+        <a href="/administracao/simulador">Simulador</a>
+        <a class="active" href="/administracao/comparativo" aria-current="page">Comparativo</a>
+      </nav>
+      <span class="internal-secure">Acesso protegido pela Cloudflare</span>
+    </div>
+  </header>
+
+  <section class="comparison-hero">
+    <div class="simulation-hero-content">
+      <p class="simulation-eyebrow">Uso exclusivo da equipe</p>
+      <h1>Comparativo de contratos</h1>
+      <p>Compare parcelas, taxas, juros estimados e o custo total de duas propostas na mesma tela.</p>
+    </div>
+  </section>
+
+  <main class="comparison-main">
+    <section class="comparison-intro">
+      <div class="comparison-intro-copy">
+        <h2>Dados dos contratos</h2>
+        <p>Preencha a taxa mensal ou anual; a taxa equivalente será calculada automaticamente. Se o total não for informado, será usada a multiplicação da parcela pela quantidade.</p>
+      </div>
+      <div class="form-field client-field"><label for="clientName">Cliente</label><input id="clientName" placeholder="Nome do cliente" maxlength="80"></div>
+      <button id="clearComparison" type="button">Limpar comparativo</button>
+    </section>
+
+    <form id="comparisonForm" novalidate>
+      <div class="contracts-grid">
+        <section class="contract-card contract-one" aria-labelledby="contract1Title">
+          <div class="contract-heading"><span>1</span><div><h2 id="contract1Title">Situação atual</h2><p>Contrato que o cliente possui hoje</p></div></div>
+          <div class="contract-fields">
+            <div class="form-field full-field"><label for="contract1Name">Identificação</label><input id="contract1Name" value="Situação atual" maxlength="50"></div>
+            <div class="form-field"><label for="contract1Principal">Valor contratado</label><input id="contract1Principal" class="money-input" inputmode="numeric" placeholder="R$ 0,00"></div>
+            <div class="form-field"><label for="contract1Installments">Quantidade de parcelas</label><input id="contract1Installments" type="number" inputmode="numeric" min="1" max="600" step="1" placeholder="Ex.: 240"></div>
+            <div class="form-field"><label for="contract1Payment">Valor da parcela</label><input id="contract1Payment" class="money-input" inputmode="numeric" placeholder="R$ 0,00"></div>
+            <div class="form-field"><label for="contract1Total">Valor total a pagar</label><input id="contract1Total" class="money-input total-input" inputmode="numeric" placeholder="Calculado automaticamente"><small>Opcional: use o total exato do contrato.</small></div>
+            <div class="form-field"><label for="contract1MonthlyRate">Taxa efetiva ao mês</label><div class="percent-field"><input id="contract1MonthlyRate" class="rate-input" inputmode="decimal" placeholder="Ex.: 1,12"><span>% a.m.</span></div></div>
+            <div class="form-field"><label for="contract1AnnualRate">Taxa efetiva ao ano</label><div class="percent-field"><input id="contract1AnnualRate" class="rate-input" inputmode="decimal" placeholder="Ex.: 14,30"><span>% a.a.</span></div></div>
+          </div>
+          <p class="contract-error" id="contract1Error" aria-live="polite"></p>
+        </section>
+
+        <section class="contract-card contract-two" aria-labelledby="contract2Title">
+          <div class="contract-heading"><span>2</span><div><h2 id="contract2Title">Novo contrato</h2><p>Proposta de crédito com garantia de imóvel</p></div></div>
+          <div class="contract-fields">
+            <div class="form-field full-field"><label for="contract2Name">Identificação</label><input id="contract2Name" value="Novo CGI" maxlength="50"></div>
+            <div class="form-field"><label for="contract2Principal">Valor contratado</label><input id="contract2Principal" class="money-input" inputmode="numeric" placeholder="R$ 0,00"></div>
+            <div class="form-field"><label for="contract2Installments">Quantidade de parcelas</label><input id="contract2Installments" type="number" inputmode="numeric" min="1" max="600" step="1" placeholder="Ex.: 240"></div>
+            <div class="form-field"><label for="contract2Payment">Valor da parcela</label><input id="contract2Payment" class="money-input" inputmode="numeric" placeholder="R$ 0,00"></div>
+            <div class="form-field"><label for="contract2Total">Valor total a pagar</label><input id="contract2Total" class="money-input total-input" inputmode="numeric" placeholder="Calculado automaticamente"><small>Opcional: use o total exato do contrato.</small></div>
+            <div class="form-field"><label for="contract2MonthlyRate">Taxa efetiva ao mês</label><div class="percent-field"><input id="contract2MonthlyRate" class="rate-input" inputmode="decimal" placeholder="Ex.: 1,12"><span>% a.m.</span></div></div>
+            <div class="form-field"><label for="contract2AnnualRate">Taxa efetiva ao ano</label><div class="percent-field"><input id="contract2AnnualRate" class="rate-input" inputmode="decimal" placeholder="Ex.: 14,30"><span>% a.a.</span></div></div>
+          </div>
+          <p class="contract-error" id="contract2Error" aria-live="polite"></p>
+        </section>
+      </div>
+    </form>
+
+    <section class="comparison-results" aria-labelledby="resultsTitle">
+      <div class="results-heading"><div><p class="simulation-eyebrow">Análise automática</p><h2 id="resultsTitle">Resultado do comparativo</h2></div><div class="result-actions"><p id="comparisonSummary" class="comparison-summary">Preencha os dois contratos para visualizar a comparação.</p><button id="generateComparisonPdf" type="button" disabled>Gerar comparativo em PDF</button><p id="pdfMessage" class="pdf-message" role="alert" aria-live="polite"></p></div></div>
+      <div class="result-metrics">
+        <article><span id="metricName1">Contrato 1</span><strong id="metricTotal1">R$ 0,00</strong><small>Total estimado · juros <b id="metricInterest1">R$ 0,00</b></small></article>
+        <article><span id="metricName2">Contrato 2</span><strong id="metricTotal2">R$ 0,00</strong><small>Total estimado · juros <b id="metricInterest2">R$ 0,00</b></small></article>
+        <article class="best-result"><span>Menor custo total</span><strong id="bestContract">—</strong><small id="estimatedSaving">Preencha os valores para comparar.</small></article>
+      </div>
+
+      <div class="charts-grid">
+        <article class="chart-card"><h3>Valor da parcela</h3><p>Comparação da parcela mensal informada.</p><div class="bar-chart" id="paymentChart"></div></article>
+        <article class="chart-card"><h3>Juros estimados</h3><p>Total pago menos o valor contratado.</p><div class="bar-chart" id="interestChart"></div></article>
+        <article class="chart-card"><h3>Taxa efetiva anual</h3><p>Taxas anualizadas para comparação equivalente.</p><div class="bar-chart" id="rateChart"></div></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="internal-footer">Premium Assessoria Imobiliária · ferramenta de uso interno</footer>
+  <script src="/administracao/assets/lib/pdf-lib/pdf-lib.min.js"></script>
+  <script src="/administracao/assets/js/simulacao-pdf-assets.js?v=20261005-1"></script>
+  <script src="/administracao/assets/js/comparativo-contratos-pdf.js?v=20261006-3"></script>
+  <script src="/administracao/assets/js/comparativo-contratos.js?v=20261006-2"></script>
+</body>
+</html>

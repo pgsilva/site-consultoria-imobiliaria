@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#001735">
+  <title>Simulador interno | Premium Assessoria Imobiliária</title>
+  <link rel="icon" href="/administracao/assets/img/logo-premium.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="/administracao/assets/css/simulador-interno.css?v=20261005-3" rel="stylesheet">
+</head>
+<body class="simulation-page internal-simulator-page">
+  <header class="internal-header">
+    <div class="internal-nav">
+      <a class="internal-brand" href="/administracao">
+        <img src="/administracao/assets/img/logo-premium.jpg" alt="Premium Assessoria Imobiliária">
+        <span><strong>Premium</strong><small>Ferramentas internas</small></span>
+      </a>
+      <nav aria-label="Navegação interna">
+        <a href="/administracao">Gerenciar acessos</a>
+        <a class="active" href="/administracao/simulador" aria-current="page">Simulador</a>
+        <a href="/administracao/comparativo">Comparativo</a>
+      </nav>
+      <span class="internal-secure">Acesso protegido pela Cloudflare</span>
+    </div>
+  </header>
+
+  <section class="simulation-hero internal-hero">
+    <div class="simulation-hero-content">
+      <p class="simulation-eyebrow">Uso exclusivo da equipe</p>
+      <h1>Simulador interno</h1>
+      <p>Centralize as simulações da equipe. Estão disponíveis o financiamento imobiliário Bradesco e o crédito com garantia de imóvel do Bradesco e Santander.</p>
+    </div>
+  </section>
+
+  <main class="simulation-main">
+    <form id="simulationForm" novalidate>
+      <section class="simulation-card" aria-labelledby="contactTitle">
+        <div class="section-heading">
+          <span class="section-number">1</span>
+          <div><h2 id="contactTitle">Dados do cliente</h2><p>Informações que serão exibidas no PDF da simulação.</p></div>
+        </div>
+        <div class="simulation-grid simulation-grid-three">
+          <div class="form-field">
+            <label for="nome">Nome completo <span aria-hidden="true">*</span></label>
+            <input id="nome" name="nome" type="text" autocomplete="name" required placeholder="Digite o nome do cliente">
+          </div>
+          <div class="form-field">
+            <label for="email">E-mail <span aria-hidden="true">*</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" required placeholder="cliente@exemplo.com">
+          </div>
+          <div class="form-field">
+            <label for="telefone">Telefone com DDD <span aria-hidden="true">*</span></label>
+            <input id="telefone" name="telefone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="15" required placeholder="(11) 99999-9999">
+          </div>
+        </div>
+      </section>
+
+      <section class="simulation-card" aria-labelledby="productTitle">
+        <div class="section-heading">
+          <span class="section-number">2</span>
+          <div><h2 id="productTitle">Produto e condições</h2><p>Escolha a modalidade e informe as condições da operação.</p></div>
+        </div>
+        <div class="simulation-grid simulation-grid-four">
+          <div class="form-field">
+            <label for="modalidade">Modalidade de crédito <span aria-hidden="true">*</span></label>
+            <select id="modalidade" name="modalidade" required>
+              <option value="Financiamento imobiliário">Financiamento imobiliário</option>
+              <option value="Crédito com garantia de imóvel">CGI - Crédito com garantia de imóvel</option>
+            </select>
+            <small id="modalityHelp">Selecione a linha de crédito que será simulada.</small>
+          </div>
+          <div class="form-field">
+            <label for="tipoImovel">Tipo de imóvel <span aria-hidden="true">*</span></label>
+            <select id="tipoImovel" name="tipoImovel" required>
+              <option value="Residencial">Residencial</option>
+              <option value="Comercial">Comercial</option>
+              <option value="Terreno">Terreno</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="valorImovel">Valor do imóvel (valor de venda) <span aria-hidden="true">*</span></label>
+            <input id="valorImovel" name="valorImovel" type="text" inputmode="numeric" required placeholder="R$ 0,00">
+            <small id="propertyHelp">Valor mínimo: R$ 100.000,00</small>
+          </div>
+          <div class="form-field" id="calculationModeField">
+            <label for="calculoPor">Simulação calculada por <span aria-hidden="true">*</span></label>
+            <select id="calculoPor" name="calculoPor" required>
+              <option value="Valor do financiamento">Valor do financiamento</option>
+              <option value="Valor da entrada">Valor da entrada</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="valorFinanciado"><span id="calculationValueLabel">Valor financiado</span> <span aria-hidden="true">*</span></label>
+            <input id="valorFinanciado" name="valorFinanciado" type="text" inputmode="numeric" required disabled placeholder="R$ 0,00">
+            <small id="financeHelp" aria-live="polite">Preencha o valor do imóvel</small>
+          </div>
+          <div class="form-field">
+            <label for="nascimento">Data de nascimento do proponente <span aria-hidden="true">*</span></label>
+            <input id="nascimento" name="nascimento" type="text" inputmode="numeric" autocomplete="bday" maxlength="10" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" required placeholder="DD/MM/AAAA">
+            <small>Digite a data completa, por exemplo: 01/05/1996</small>
+          </div>
+          <div class="form-field">
+            <label for="prazo"><span id="termLabel">Prazo de financiamento</span> <span aria-hidden="true">*</span></label>
+            <input id="prazo" name="prazo" type="number" inputmode="numeric" min="1" step="1" required disabled placeholder="Ex.: 240">
+            <small id="termHelp" aria-live="polite">Preencha a data de nascimento do proponente</small>
+          </div>
+          <div class="form-field">
+            <label for="amortizacao">Sistema amortizador <span aria-hidden="true">*</span></label>
+            <select id="amortizacao" name="amortizacao" required><option value="SAC">SAC</option></select>
+            <small id="amortizationHelp">Sistema usado no financiamento imobiliário.</small>
+          </div>
+          <fieldset class="form-field choice-field" id="expensesField">
+            <legend>Incluir despesas no financiamento? <span aria-hidden="true">*</span></legend>
+            <div class="choice-row">
+              <label><input type="radio" name="despesas" value="Sim" required><span>Sim</span></label>
+              <label><input type="radio" name="despesas" value="Não" checked><span>Não</span></label>
+            </div>
+          </fieldset>
+        </div>
+      </section>
+
+      <div class="simulation-lower-grid">
+        <section class="simulation-card" aria-labelledby="bankTitle">
+          <div class="section-heading compact">
+            <span class="section-number">3</span>
+            <div><h2 id="bankTitle">Instituição financeira</h2><p>Selecione o banco utilizado na simulação.</p></div>
+          </div>
+          <fieldset class="bank-selector">
+            <legend>Banco disponível <span aria-hidden="true">*</span></legend>
+            <div class="bank-options">
+              <div class="bank-option"><input id="bankBradesco" type="radio" name="banco" value="Bradesco" checked required><label class="bank-card" for="bankBradesco" title="Bradesco disponível"><img src="/administracao/assets/img/banks/bradesco.png" alt=""><span class="visually-hidden">Bradesco — disponível</span></label></div>
+              <div class="bank-option"><input id="bankItau" type="radio" name="banco" value="Itaú" disabled><label class="bank-card" for="bankItau" aria-disabled="true" title="Itaú em breve"><img src="/administracao/assets/img/banks/itau.png" alt=""><span class="visually-hidden">Itaú — em breve</span></label></div>
+              <div class="bank-option"><input id="bankSantander" type="radio" name="banco" value="Santander" disabled><label class="bank-card" for="bankSantander" aria-disabled="true" title="Santander disponível para CGI"><img src="/administracao/assets/img/banks/santander.png" alt=""><span class="visually-hidden">Santander — disponível para CGI</span></label></div>
+              <div class="bank-option"><input id="bankInter" type="radio" name="banco" value="Inter" disabled><label class="bank-card" for="bankInter" aria-disabled="true" title="Inter em breve"><img src="/administracao/assets/img/banks/inter.png" alt=""><span class="visually-hidden">Inter — em breve</span></label></div>
+            </div>
+            <p class="bank-help" id="bankHelp">As demais instituições serão habilitadas quando suas regras forem cadastradas.</p>
+          </fieldset>
+        </section>
+
+        <section class="simulation-card" aria-labelledby="rateTitle">
+          <div class="section-heading compact">
+            <span class="section-number">4</span>
+            <div><h2 id="rateTitle">Taxa de juros</h2><p id="rateIntro">Informe a taxa que será usada na simulação do Bradesco.</p></div>
+          </div>
+          <div class="form-field rate-field">
+            <label for="taxa"><span id="rateLabel">Taxa do Bradesco</span> <span aria-hidden="true">*</span></label>
+            <div class="rate-input-wrap">
+              <input id="taxa" name="taxa" type="text" inputmode="decimal" autocomplete="off" value="12,30" placeholder="Ex.: 12,30" aria-describedby="rateHelp" required>
+              <span aria-hidden="true">% a.a.</span>
+            </div>
+            <small id="rateHelp">Digite livremente a taxa anual que será usada no cálculo. É possível reduzir a taxa com relacionamento na instituição.</small>
+          </div>
+          <div class="form-field rate-field is-hidden" id="initialFeeField">
+            <label for="tarifaInicial">Tarifa inicial estimada</label>
+            <input id="tarifaInicial" name="tarifaInicial" type="text" inputmode="numeric" value="R$ 2.114,03" placeholder="R$ 0,00">
+            <small id="initialFeeHelp">Valor encontrado no demonstrativo de referência; pode ser alterado.</small>
+          </div>
+        </section>
+      </div>
+
+      <section class="simulation-submit">
+        <p>O resultado será gerado em PDF e aberto em uma nova aba.</p>
+        <button type="submit">Gerar simulação em PDF</button>
+        <div id="formMessage" class="form-message" role="alert" aria-live="polite"></div>
+      </section>
+    </form>
+  </main>
+
+  <footer class="internal-footer">Premium Assessoria Imobiliária · ferramenta de uso interno</footer>
+
+  <script src="/administracao/assets/lib/pdf-lib/pdf-lib.min.js"></script>
+  <script src="/administracao/assets/js/simulacao-pdf-assets.js?v=20261005-1"></script>
+  <script src="/administracao/assets/js/simulacao-pdf.js?v=20261005-1"></script>
+  <script src="/administracao/assets/js/simulacao-cgi-pdf.js?v=20261005-3"></script>
+  <script src="/administracao/assets/js/simulador-interno.js?v=20261005-4"></script>
+</body>
+</html>
