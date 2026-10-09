@@ -22,21 +22,32 @@
         return Math.max(0, Math.round((end - start) / 86400000));
     }
 
-    function npv(rate, flows) {
+    function datedNpv(rate, flows, dates) {
+        var baseDate = dates[0];
         return flows.reduce(function (total, value, index) {
-            return total + value / Math.pow(1 + rate, index);
+            var years = daysBetween(baseDate, dates[index]) / 365;
+            return total + value / Math.pow(1 + rate, years);
         }, 0);
     }
 
-    function irr(flows) {
+    function annualIrr(flows, dates) {
         var low = 0;
-        var high = 0.15;
+        var high = 10;
         for (var index = 0; index < 200; index++) {
             var middle = (low + high) / 2;
-            if (npv(middle, flows) > 0) high = middle;
+            if (datedNpv(middle, flows, dates) > 0) high = middle;
             else low = middle;
         }
         return (low + high) / 2;
+    }
+
+    function firstDueDate(input) {
+        return input.firstDueDate || addMonths(input.simulationDate, 1);
+    }
+
+    function firstInterestRate(input, monthlyRate) {
+        var interestDays = Math.max(1, daysBetween(input.simulationDate, firstDueDate(input)) - 1);
+        return Math.pow(1 + monthlyRate, interestDays / 30) - 1;
     }
 
     function calculateSacRows(input, monthlyRate) {
@@ -46,12 +57,13 @@
         for (var number = 1; number <= input.termMonths; number++) {
             var openingBalance = balance;
             var actualAmortization = number === input.termMonths ? openingBalance : amortization;
-            var interest = roundMoney(openingBalance * monthlyRate);
+            var interestRate = number === 1 ? firstInterestRate(input, monthlyRate) : monthlyRate;
+            var interest = roundMoney(openingBalance * interestRate);
             var payment = roundMoney(actualAmortization + interest);
             balance = roundMoney(Math.max(0, openingBalance - actualAmortization));
             rows.push({
                 number: number,
-                date: addMonths(input.simulationDate, number),
+                date: addMonths(firstDueDate(input), number - 1),
                 amortization: actualAmortization,
                 interest: interest,
                 tariff: 0,
@@ -69,13 +81,14 @@
         var balance = roundMoney(input.financedValue);
         var rows = [];
         for (var number = 1; number <= input.termMonths; number++) {
-            var interest = roundMoney(balance * monthlyRate);
-            var amortization = number === input.termMonths ? balance : roundMoney(fixedPayment - interest);
+            var regularInterest = roundMoney(balance * monthlyRate);
+            var interest = number === 1 ? roundMoney(balance * firstInterestRate(input, monthlyRate)) : regularInterest;
+            var amortization = number === input.termMonths ? balance : roundMoney(fixedPayment - regularInterest);
             var payment = roundMoney(amortization + interest);
             balance = roundMoney(Math.max(0, balance - amortization));
             rows.push({
                 number: number,
-                date: addMonths(input.simulationDate, number),
+                date: addMonths(firstDueDate(input), number - 1),
                 amortization: amortization,
                 interest: interest,
                 tariff: 0,
@@ -100,6 +113,8 @@
         if (input.financedValue <= 0 || input.propertyValue <= 0) throw new Error('Informe os valores do imóvel e do crédito.');
         if (roundMoney(input.financedValue) > roundMoney(input.propertyValue * MAX_LTV)) throw new Error('O crédito não pode ultrapassar 60% do valor do imóvel.');
         if (input.termMonths < 1 || input.termMonths > MAX_TERM_MONTHS) throw new Error('O prazo do CGI deve ficar entre 1 e 240 meses.');
+        if (!input.simulationDate || typeof input.simulationDate.getTime !== 'function' || Number.isNaN(input.simulationDate.getTime())) throw new Error('Informe uma data da operação válida.');
+        if (!firstDueDate(input) || typeof firstDueDate(input).getTime !== 'function' || Number.isNaN(firstDueDate(input).getTime()) || firstDueDate(input) <= input.simulationDate) throw new Error('O primeiro vencimento deve ser posterior à data da operação.');
         if (input.bank === 'Bradesco' && input.financedValue < 50000) throw new Error('O crédito mínimo do Credimóvel Bradesco é R$ 50.000,00.');
         if (input.bank === 'Santander' && input.financedValue < 30000) throw new Error('O crédito mínimo do Usecasa Santander é R$ 30.000,00.');
         if (input.bank === 'Santander') input.amortizationSystem = 'Price';
@@ -125,7 +140,8 @@
         var totalInstallments = installmentRows.reduce(function (total, row) { return total + row.payment; }, 0);
         var flows = [input.financedValue - iof - initialFee]
             .concat(installmentRows.map(function (row) { return -row.payment; }));
-        var monthlyCet = irr(flows);
+        var flowDates = [input.simulationDate].concat(installmentRows.map(function (row) { return row.date; }));
+        var annualCet = annualIrr(flows, flowDates);
 
         return {
             input: input,
@@ -140,7 +156,7 @@
             minimumIncome: firstPayment / INCOME_COMMITMENT,
             totalInstallments: totalInstallments,
             totalCost: totalInstallments + iof + initialFee,
-            cet: (Math.pow(1 + monthlyCet, 12) - 1) * 100
+            cet: annualCet * 100
         };
     }
 

@@ -103,6 +103,16 @@
             <input id="nascimento" name="nascimento" type="text" inputmode="numeric" autocomplete="bday" maxlength="10" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" required placeholder="DD/MM/AAAA">
             <small>Digite a data completa, por exemplo: 01/05/1996</small>
           </div>
+          <div class="form-field is-hidden" id="operationDateField">
+            <label for="dataOperacao">Data da operação <span aria-hidden="true">*</span></label>
+            <input id="dataOperacao" name="dataOperacao" type="text" inputmode="numeric" maxlength="10" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" placeholder="DD/MM/AAAA">
+            <small>Data de liberação usada no cálculo do IOF e do primeiro período.</small>
+          </div>
+          <div class="form-field is-hidden" id="firstDueDateField">
+            <label for="primeiroVencimento">Primeiro vencimento <span aria-hidden="true">*</span></label>
+            <input id="primeiroVencimento" name="primeiroVencimento" type="text" inputmode="numeric" maxlength="10" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" placeholder="DD/MM/AAAA" aria-describedby="firstDueDateHelp">
+            <small id="firstDueDateHelp" aria-live="polite">Informe a data da primeira parcela.</small>
+          </div>
           <div class="form-field">
             <label for="prazo"><span id="termLabel">Prazo de financiamento</span> <span aria-hidden="true">*</span></label>
             <input id="prazo" name="prazo" type="number" inputmode="numeric" min="1" step="1" required disabled placeholder="Ex.: 240">
@@ -175,7 +185,7 @@
   <script src="/administracao/assets/lib/pdf-lib/pdf-lib.min.js"></script>
   <script src="/administracao/assets/js/simulacao-pdf-assets.js?v=20261005-1"></script>
   <script src="/administracao/assets/js/simulacao-pdf.js?v=20261005-1"></script>
-  <script src="/administracao/assets/js/simulacao-cgi-pdf.js?v=20261005-3"></script>
-  <script src="/administracao/assets/js/simulador-interno.js?v=20261005-4"></script>
+  <script src="/administracao/assets/js/simulacao-cgi-pdf.js?v=20261008-1"></script>
+  <script src="/administracao/assets/js/simulador-interno.js?v=20261008-1"></script>
 </body>
 </html>

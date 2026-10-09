@@ -12,6 +12,11 @@
     var calculationValueLabel = document.getElementById('calculationValueLabel');
     var financedValue = document.getElementById('valorFinanciado');
     var birthDate = document.getElementById('nascimento');
+    var operationDateField = document.getElementById('operationDateField');
+    var operationDateInput = document.getElementById('dataOperacao');
+    var firstDueDateField = document.getElementById('firstDueDateField');
+    var firstDueDateInput = document.getElementById('primeiroVencimento');
+    var firstDueDateHelp = document.getElementById('firstDueDateHelp');
     var term = document.getElementById('prazo');
     var termLabel = document.getElementById('termLabel');
     var amortization = document.getElementById('amortizacao');
@@ -106,7 +111,7 @@
         else if (value.length > 2) event.target.value = value.slice(0, 2) + '/' + value.slice(2);
         else event.target.value = value;
     }
-    function parseBirthDate(value) {
+    function parseCalendarDate(value) {
         var valueDigits = digits(value);
         if (valueDigits.length !== 8) return null;
         var day = Number(valueDigits.slice(0, 2));
@@ -115,6 +120,56 @@
         var parsed = new Date(year, month - 1, day, 12, 0, 0);
         if (parsed.getFullYear() !== year || parsed.getMonth() !== month - 1 || parsed.getDate() !== day) return null;
         return parsed;
+    }
+    function parseBirthDate(value) { return parseCalendarDate(value); }
+    function dateInputText(date) {
+        return String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + date.getFullYear();
+    }
+    function todayAtNoon() {
+        var now = new Date();
+        return new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 0, 0);
+    }
+    function addCalendarMonths(date, months) {
+        var result = new Date(date.getFullYear(), date.getMonth() + months, date.getDate(), 12, 0, 0);
+        if (result.getDate() !== date.getDate()) result.setDate(0);
+        return result;
+    }
+    function updateCgiDates(forceDefaults) {
+        var active = isCgi();
+        operationDateField.classList.toggle('is-hidden', !active);
+        firstDueDateField.classList.toggle('is-hidden', !active);
+        operationDateInput.disabled = !active;
+        firstDueDateInput.disabled = !active;
+        operationDateInput.required = active;
+        firstDueDateInput.required = active;
+        if (active && (forceDefaults || !parseCalendarDate(operationDateInput.value))) {
+            var today = todayAtNoon();
+            operationDateInput.value = dateInputText(today);
+            firstDueDateInput.value = dateInputText(addCalendarMonths(today, 1));
+        }
+        if (!active) {
+            operationDateInput.setCustomValidity('');
+            firstDueDateInput.setCustomValidity('');
+        }
+        validateCgiDates();
+    }
+    function validateCgiDates() {
+        if (!isCgi()) return true;
+        var operationDate = parseCalendarDate(operationDateInput.value);
+        var firstDueDate = parseCalendarDate(firstDueDateInput.value);
+        operationDateInput.setCustomValidity(operationDate ? '' : 'Informe uma data da operação válida.');
+        var errorText = '';
+        if (!firstDueDate) errorText = 'Informe uma data de primeiro vencimento válida.';
+        else if (operationDate && firstDueDate <= operationDate) errorText = 'O primeiro vencimento deve ser posterior à data da operação.';
+        firstDueDateInput.setCustomValidity(errorText);
+        firstDueDateInput.classList.toggle('input-error', Boolean(errorText));
+        firstDueDateHelp.classList.toggle('field-error', Boolean(errorText));
+        if (errorText) firstDueDateHelp.textContent = errorText;
+        else if (operationDate && firstDueDate) {
+            var calendarDays = Math.round((firstDueDate - operationDate) / 86400000);
+            firstDueDateHelp.textContent = 'Primeiro período: ' + calendarDays + ' dias corridos; juros proporcionais por ' + Math.max(1, calendarDays - 1) + ' dias.';
+        }
+        return Boolean(operationDate && firstDueDate && !errorText);
     }
     function ageFromBirthDate(born) {
         var today = new Date();
@@ -194,8 +249,8 @@
         rateIntro.textContent = 'Informe a taxa efetiva anual usada na simulação do ' + bank + '.';
         if (isCgi()) {
             rateHelp.textContent = bank === 'Bradesco'
-                ? 'Taxa fixa, sem indexador. O benchmark enviado usa 23,4771% a.a. efetiva.'
-                : 'Taxa editável. A referência pública do Santander parte de 1,12% a.m.; confirme a condição aprovada.';
+                ? 'Informe a taxa efetiva anual aprovada na proposta do Bradesco.'
+                : 'Taxa editável. Confirme a condição aprovada na proposta do Santander.';
             if (forceDefault) rateInput.value = bank === 'Bradesco' ? '23,4771' : '14,30';
             initialFeeField.classList.remove('is-hidden');
             if (bank === 'Bradesco') {
@@ -217,6 +272,7 @@
         updatePropertyOptions();
         updateAmortizationOptions();
         updateCalculationMode();
+        updateCgiDates(forceDefaults);
         expensesField.classList.toggle('is-hidden', isCgi());
         termLabel.textContent = isCgi() ? 'Prazo da operação' : 'Prazo de financiamento';
         if (isCgi()) form.querySelector('[name="despesas"][value="Não"]').checked = true;
@@ -317,6 +373,8 @@
     initialFee.addEventListener('input', maskMoney);
     calculationMode.addEventListener('change', function () { financedValue.value = ''; updateCalculationMode(); updateFinancing(); });
     birthDate.addEventListener('input', function (event) { maskDate(event); updateTerm(); });
+    operationDateInput.addEventListener('input', function (event) { maskDate(event); validateCgiDates(); });
+    firstDueDateInput.addEventListener('input', function (event) { maskDate(event); validateCgiDates(); });
     term.addEventListener('input', validateTermLimit);
     phone.addEventListener('input', maskPhone);
     rateInput.addEventListener('input', validateRate);
@@ -339,9 +397,11 @@
         var termWithinLimit = validateTermLimit();
         var financingWithinLimit = validateFinancingLimit();
         var rateIsValid = validateRate();
+        var cgiDatesAreValid = validateCgiDates();
         if (!financingWithinLimit) { financedValue.focus(); return; }
         if (!termWithinLimit) { term.focus(); return; }
         if (!rateIsValid) { rateInput.focus(); return; }
+        if (!cgiDatesAreValid) { firstDueDateInput.focus(); return; }
         if (!form.checkValidity()) {
             formMessage.textContent = 'Confira os campos obrigatórios antes de continuar.';
             form.reportValidity();
@@ -361,7 +421,8 @@
             termMonths: Number(fields.get('prazo')),
             annualRate: parseRate(fields.get('taxa')),
             amortizationSystem: amortization.value,
-            simulationDate: new Date(),
+            simulationDate: isCgi() ? parseCalendarDate(String(fields.get('dataOperacao'))) : new Date(),
+            firstDueDate: isCgi() ? parseCalendarDate(String(fields.get('primeiroVencimento'))) : null,
             expenses: selected('despesas'),
             initialFee: moneyToNumber(initialFee.value)
         };
