@@ -28,7 +28,6 @@ export default {
         return protectedAsset(request, env, "/comparativo-contratos.html");
       }
       if (url.pathname.startsWith("/administracao/assets/") && request.method === "GET") {
-        if (!(await authorizedAdmin(request, env))) return new Response("Não autorizado.", { status: 401 });
         return protectedAsset(request, env, url.pathname.replace("/administracao/assets", ""));
       }
       if (apiPath === "/api/config" && request.method === "GET") {
@@ -473,7 +472,8 @@ function clearCookie(name) { return `${name}=; Path=/; HttpOnly; Secure; SameSit
 async function authorizedAdmin(request, env) {
   const bearer = request.headers.get("Authorization") || "";
   if (env.ADMIN_SECRET && (await safeEqual(bearer, `Bearer ${env.ADMIN_SECRET}`))) return true;
-  return validateAccessJwt(request.headers.get("Cf-Access-Jwt-Assertion"), env);
+  const accessToken = request.headers.get("Cf-Access-Jwt-Assertion") || cookieValue(request, "CF_Authorization");
+  return validateAccessJwt(accessToken, env);
 }
 async function validateAccessJwt(token, env) {
   if (!token || !env.ACCESS_AUD || !env.ADMIN_EMAILS) return false;
