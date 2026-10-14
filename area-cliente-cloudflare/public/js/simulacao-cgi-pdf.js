@@ -46,8 +46,10 @@
     }
 
     function firstInterestRate(input, monthlyRate) {
-        var interestDays = Math.max(1, daysBetween(input.simulationDate, firstDueDate(input)) - 1);
-        return Math.pow(1 + monthlyRate, interestDays / 30) - 1;
+        var periodDays = Math.max(1, daysBetween(input.simulationDate, firstDueDate(input)));
+        var rateExcludingStartDate = Math.pow(1 + monthlyRate, Math.max(1, periodDays - 1) / 30) - 1;
+        var rateIncludingStartDate = Math.pow(1 + monthlyRate, periodDays / 30) - 1;
+        return (rateExcludingStartDate + rateIncludingStartDate) / 2;
     }
 
     function calculateSacRows(input, monthlyRate) {
