@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#001735">
+  <title>Contratos | Premium Assessoria Imobiliária</title>
+  <link rel="icon" href="/administracao/assets/img/logo-premium.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="/administracao/assets/css/simulador-interno.css?v=20261107-2" rel="stylesheet">
+  <link href="/administracao/assets/css/contrato-compra-venda.css?v=20261107-2" rel="stylesheet">
+</head>
+<body class="simulation-page contract-page">
+  <header class="internal-header">
+    <div class="internal-nav">
+      <a class="internal-brand" href="/administracao">
+        <img src="/administracao/assets/img/logo-premium.jpg" alt="Premium Assessoria Imobiliária">
+        <span><strong>Premium</strong><small>Ferramentas internas</small></span>
+      </a>
+      <nav aria-label="Navegação interna">
+        <a href="/administracao">Gerenciar acessos</a>
+        <a href="/administracao/simulador">Simulador</a>
+        <a href="/administracao/comparativo">Comparativo</a>
+        <a class="active" href="/administracao/contratos" aria-current="page">Contratos</a>
+      </nav>
+      <span class="internal-secure">Acesso protegido pela Cloudflare</span>
+    </div>
+  </header>
+
+  <section class="contract-hero">
+    <div>
+      <p class="simulation-eyebrow">Uso exclusivo da equipe</p>
+      <h1>Contrato de compra e venda</h1>
+      <p>Organize os dados variáveis das partes, do imóvel e do pagamento em uma única ficha.</p>
+    </div>
+  </section>
+
+  <main class="contract-main">
+    <form id="contractDataForm">
+      <section class="contract-card">
+        <div class="section-heading compact"><span class="section-number">1</span><div><h2>Partes</h2><p>É possível adicionar mais de um vendedor ou comprador.</p></div></div>
+        <div class="party-columns">
+          <div><div class="subheading"><h3>Vendedores</h3><button type="button" data-add="seller">+ Adicionar</button></div><div id="sellerList" class="party-list"></div></div>
+          <div><div class="subheading"><h3>Compradores</h3><button type="button" data-add="buyer">+ Adicionar</button></div><div id="buyerList" class="party-list"></div></div>
+        </div>
+      </section>
+
+      <section class="contract-card">
+        <div class="section-heading compact"><span class="section-number">2</span><div><h2>Imóvel</h2><p>Informe os dados da matrícula e do endereço.</p></div></div>
+        <div class="field-grid">
+          <label>Matrícula<input name="matricula" required></label>
+          <label class="span-2">Cartório<input name="cartorio" required></label>
+          <label class="span-2">Endereço do imóvel<input name="endereco_imovel" required></label>
+          <label>Bairro<input name="bairro" required></label>
+          <label>Cidade<input name="cidade" required></label>
+          <label>UF<input name="uf" maxlength="2" required></label>
+          <label>CEP<input name="cep" maxlength="9" required></label>
+        </div>
+      </section>
+
+      <section class="contract-card">
+        <div class="section-heading compact"><span class="section-number">3</span><div><h2>Preço e pagamento</h2><p>Preencha os valores e a conta de recebimento do vendedor.</p></div></div>
+        <div class="field-grid">
+          <label>Valor total da venda<input name="valor_total" class="money" inputmode="numeric" required></label>
+          <label>Sinal<input name="sinal" class="money" inputmode="numeric"></label>
+          <label>FGTS<input name="fgts" class="money" inputmode="numeric"></label>
+          <label>Entrada<input name="entrada" class="money" inputmode="numeric"></label>
+          <label>Financiamento<input name="financiamento" class="money" inputmode="numeric"></label>
+          <label>Banco<input name="banco" required></label>
+          <label>Agência<input name="agencia" required></label>
+          <label>Conta corrente<input name="conta" required></label>
+        </div>
+      </section>
+
+      <section class="contract-card">
+        <div class="section-heading compact"><span class="section-number">4</span><div><h2>Assinatura</h2><p>Dados finais para conferência da equipe.</p></div></div>
+        <div class="field-grid">
+          <label>Cidade da assinatura<input name="cidade_assinatura" value="São Paulo" required></label>
+          <label>Data da assinatura<input name="data_assinatura" type="date" required></label>
+          <label>Prazo do financiamento (dias)<input name="prazo_financiamento" type="number" value="60" min="1" required></label>
+          <label>Prazo para rescisão (dias)<input name="prazo_rescisao" type="number" value="90" min="1" required></label>
+        </div>
+      </section>
+
+      <section class="contract-actions">
+        <div><strong>Ficha de conferência</strong><p>Esta tela organiza os dados para revisão antes da elaboração do contrato.</p></div>
+        <button type="reset" class="secondary">Limpar</button>
+        <button type="button" id="printData" class="primary">Imprimir ficha</button>
+        <button type="button" id="generateDataPdf" class="primary">Gerar contrato em PDF</button>
+        <p id="contractStatus" class="contract-status" role="status" aria-live="polite"></p>
+      </section>
+    </form>
+  </main>
+
+  <template id="partyTemplate">
+    <fieldset class="party-card">
+      <div class="party-title"><legend></legend><button type="button" data-remove>Remover</button></div>
+      <div class="party-fields">
+        <label class="span-2">Nome completo<input data-field="nome" required></label>
+        <label>CPF<input data-field="cpf" maxlength="14" required></label>
+        <label>RG<input data-field="rg"></label>
+        <label>Nacionalidade<input data-field="nacionalidade" value="brasileiro(a)"></label>
+        <label>Estado civil<input data-field="estado_civil"></label>
+        <label>Profissão<input data-field="profissao"></label>
+        <label class="span-2">Endereço pessoal<input data-field="endereco"></label>
+      </div>
+    </fieldset>
+  </template>
+
+  <footer class="internal-footer">Premium Assessoria Imobiliária · ferramenta de uso interno</footer>
+  <script src="/administracao/assets/lib/pdf-lib/pdf-lib.min.js"></script>
+  <script src="/administracao/assets/lib/fontkit/fontkit.umd.min.js"></script>
+  <script src="/administracao/assets/js/simulacao-pdf-assets.js?v=20261005-1"></script>
+  <script src="/administracao/assets/js/contrato-pdf.js?v=20261108-13"></script>
+  <script src="/administracao/assets/js/contrato-compra-venda.js?v=20261107-2"></script>
+</body>
+</html>

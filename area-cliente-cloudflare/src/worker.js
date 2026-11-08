@@ -27,6 +27,10 @@ export default {
         if (!(await authorizedAdmin(request, env))) return new Response("Não autorizado.", { status: 401 });
         return protectedAsset(request, env, "/comparativo-contratos.html");
       }
+      if ((url.pathname === "/administracao/contratos" || url.pathname === "/administracao/contratos/") && request.method === "GET") {
+        if (!(await authorizedAdmin(request, env))) return new Response("Não autorizado.", { status: 401 });
+        return protectedAsset(request, env, "/contrato-compra-venda.html");
+      }
       if (url.pathname.startsWith("/administracao/assets/") && request.method === "GET") {
         return protectedAsset(request, env, url.pathname.replace("/administracao/assets", ""));
       }

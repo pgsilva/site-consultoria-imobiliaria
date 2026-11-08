@@ -36,8 +36,10 @@ select { font-family: inherit; }
 .internal-header {
     position: relative;
     z-index: 10;
+    padding: 0;
     color: #fff;
     background: var(--dark);
+    font-family: 'Montserrat', sans-serif;
 }
 
 .internal-nav {
@@ -68,7 +70,7 @@ select { font-family: inherit; }
 .internal-brand strong,
 .internal-brand small { display: block; }
 .internal-brand strong { color: var(--primary); font: 600 1.05rem 'Cinzel', serif; }
-.internal-brand small { margin-top: 2px; font-size: .65rem; letter-spacing: .08em; text-transform: uppercase; }
+.internal-brand small { margin-top: 2px; font: 400 .65rem/1.2 'Montserrat', sans-serif; letter-spacing: .08em; text-transform: uppercase; }
 
 .internal-nav nav {
     display: flex;
@@ -77,18 +79,22 @@ select { font-family: inherit; }
 }
 
 .internal-nav nav a {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 11px 15px;
     border-radius: 999px;
     color: rgba(255,255,255,.78);
-    font-size: .76rem;
-    font-weight: 600;
+    font: 600 .76rem/1 'Montserrat', sans-serif;
     text-decoration: none;
+    white-space: nowrap;
 }
 
 .internal-nav nav a:hover,
 .internal-nav nav a.active { color: var(--dark); background: var(--primary); }
 
-.internal-secure { color: rgba(255,255,255,.6); font-size: .68rem; }
+.internal-secure { color: rgba(255,255,255,.6); font: 400 .68rem/1.2 'Montserrat', sans-serif; }
 
 .internal-hero { min-height: 310px; padding: 68px 24px 86px; }
 
